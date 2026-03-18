@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "node backend/db_connection.js"
+    "start": "node backend/db.js"
   },
   "dependencies": {
     "express": "^5.2.1",

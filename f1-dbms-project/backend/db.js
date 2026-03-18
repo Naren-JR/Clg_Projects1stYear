@@ -26,7 +26,7 @@ db.connect((err) => {
 });
 
 app.listen(5000, () => {
-    console.log("Server running on port 5000");
+    console.log("Server running on port 5000 - db.js");
 });
 
 app.get("/test", (req, res) => {
@@ -35,3 +35,6 @@ app.get("/test", (req, res) => {
         else res.json(result);
     });
 });
+
+
+export default db;
