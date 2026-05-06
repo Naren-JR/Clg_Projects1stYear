@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS RESULTS (
     Pos INT NULL,
     Points INT DEFAULT 0,
     Standings ENUM('Finished','DNF','DSQ', 'DNS', 'DNQ', 'NC', 'Retired'), -- Finished, DNF (Did Not Finish), DSQ (Disqualified), DNS (Did Not Start), DNQ (Did Not Qualify), NC (Not Classified), Retired
-    LapTime TIME(3) NULL,
+    LapTime VARCHAR(20) NULL,
     FOREIGN KEY (RaceID) REFERENCES RACES(RaceID),
     FOREIGN KEY (DriverID) REFERENCES DRIVERS(DriverID),
     FOREIGN KEY (TeamID) REFERENCES TEAMS(TeamID)
