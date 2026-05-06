@@ -11,8 +11,7 @@ CREATE TABLE IF NOT EXISTS SEASON_TEAMS (
 	TeamID VARCHAR(3),
     Season YEAR NOT NULL,
     DisplayName VARCHAR(50),
-    ColorPrimary CHAR(7),
-    ColorSecondary CHAR(7),
+    Color CHAR(7),
 	PRIMARY KEY (TeamID, Season),
     FOREIGN KEY (TeamID) REFERENCES TEAMS(TeamID)
 );
