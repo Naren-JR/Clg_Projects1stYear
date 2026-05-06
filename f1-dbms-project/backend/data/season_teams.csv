@@ -1,62 +1,62 @@
-Season,DisplayName,Color
-2021,Mercedes-AMG Petronas,#00D2BE
-2021,Red Bull Racing Honda,#DC0000
-2021,Scuderia Ferrari Mission Winnow,#0600EF
-2021,McLaren,#0090FF
-2021,Alpine,#FFFFFF
-2021,Scuderia AlphaTauri Honda,#006F62
-2021,Aston Martin Cognizant,#2B4562
-2021,Williams Racing,#FF8700
-2021,Alfa Romeo Racing Orlen,#900000
-2021,Uralkali Haas,#005AFF
-2022,Mercedes-AMG Petronas,#6CD3BF
-2022,Oracle Red Bull Racing,#1E5BC6
-2022,Scuderia Ferrari,#ED1C24
-2022,McLaren,#F58020
-2022,BWT Alpine,#2293D1
-2022,Scuderia AlphaTauri,#4E7C9B
-2022,Aston Martin Aramco Cognizant,#2D826D
-2022,Williams Racing,#37BEDD
-2022,Alfa Romeo Orlen,#B12039
-2022,Haas,#B6BABD
-2023,Mercedes-AMG Petronas,#6CD3BF
-2023,Oracle Red Bull Racing,#3671C6
-2023,Scuderia Ferrari,#F91536
-2023,McLaren,#F58020
-2023,Alpine,#2293D1
-2023,Scuderia AlphaTauri,#5E8FAA
-2023,Aston Martin Aramco Cognizant,#358C75
-2023,Williams Racing,#37BEDD
-2023,Alfa Romeo STAKE,#C92D4B
-2023,MoneyGram Haas,#B6BABD
-2024,Mercedes-AMG Petronas,#27F4D2
-2024,Oracle Red Bull Racing,#3671C6
-2024,Scuderia Ferrari,#E8002D
-2024,McLaren,#FF8000
-2024,Alpine,#FF87BC
-2024,Visa Cash App RB,#6692FF
-2024,Aston Martin Aramco,#229971
-2024,Williams Racing,#64C4FF
-2024,STAKE Kick Sauber,#52E252
-2024,MoneyGram Haas,#B6BABD
-2025,Mercedes-AMG Petronas,#00D7B6
-2025,Oracle Red Bull Racing,#4781D7
-2025,Scuderia Ferrari HP,#ED1131
-2025,McLaren,#F47600
-2025,BWT Alpine,#00A1E8
-2025,Visa Cash App Racing Bulls,#6C98FF
-2025,Aston Martin Aramco,#229971
-2025,Atlassian Williams Racing,#1868DB
-2025,STAKE Kick Sauber,#01C00E
-2025,MoneyGram Haas,#9C9FA2
-2026,Mercedes-AMG Petronas,#75F1D3
-2026,Oracle Red Bull Racing,#4570C0
-2026,Scuderia Ferrari HP,#D52E37
-2026,McLaren Mastercard,#ef8733
-2026,BWT Alpine,#479FE2
-2026,Visa Cash App Racing Bulls,#7091f8
-2026,Aston Martin Aramco,#4B9774
-2026,Atlassian Williams,#3267D4
-2026,Audi Revolut,#EB4526
-2026,TGR Haas,#DFE1E2
-2026,Cadillac,#AAAADD
+TeamID,Season,DisplayName,Color
+MER,2021,Mercedes-AMG Petronas,#00D2BE
+RBR,2021,Red Bull Racing Honda,#DC0000
+FER,2021,Scuderia Ferrari Mission Winnow,#0600EF
+MCL,2021,McLaren,#0090FF
+ALP,2021,Alpine,#FFFFFF
+WIL,2021,Scuderia AlphaTauri Honda,#006F62
+AMR,2021,Aston Martin Cognizant,#2B4562
+AT,2021,Williams Racing,#FF8700
+SAU,2021,Alfa Romeo Racing Orlen,#900000
+HAS,2021,Uralkali Haas,#005AFF
+MER,2022,Mercedes-AMG Petronas,#6CD3BF
+RBR,2022,Oracle Red Bull Racing,#1E5BC6
+FER,2022,Scuderia Ferrari,#ED1C24
+MCL,2022,McLaren,#F58020
+ALP,2022,BWT Alpine,#2293D1
+WIL,2022,Scuderia AlphaTauri,#4E7C9B
+AMR,2022,Aston Martin Aramco Cognizant,#2D826D
+AT,2022,Williams Racing,#37BEDD
+SAU,2022,Alfa Romeo Orlen,#B12039
+HAS,2022,Haas,#B6BABD
+MER,2023,Mercedes-AMG Petronas,#6CD3BF
+RBR,2023,Oracle Red Bull Racing,#3671C6
+FER,2023,Scuderia Ferrari,#F91536
+MCL,2023,McLaren,#F58020
+ALP,2023,Alpine,#2293D1
+WIL,2023,Scuderia AlphaTauri,#5E8FAA
+AMR,2023,Aston Martin Aramco Cognizant,#358C75
+AT,2023,Williams Racing,#37BEDD
+SAU,2023,Alfa Romeo STAKE,#C92D4B
+HAS,2023,MoneyGram Haas,#B6BABD
+MER,2024,Mercedes-AMG Petronas,#27F4D2
+RBR,2024,Oracle Red Bull Racing,#3671C6
+FER,2024,Scuderia Ferrari,#E8002D
+MCL,2024,McLaren,#FF8000
+ALP,2024,Alpine,#FF87BC
+WIL,2024,Visa Cash App RB,#6692FF
+AMR,2024,Aston Martin Aramco,#229971
+AT,2024,Williams Racing,#64C4FF
+SAU,2024,STAKE Kick Sauber,#52E252
+HAS,2024,MoneyGram Haas,#B6BABD
+MER,2025,Mercedes-AMG Petronas,#00D7B6
+RBR,2025,Oracle Red Bull Racing,#4781D7
+FER,2025,Scuderia Ferrari HP,#ED1131
+MCL,2025,McLaren,#F47600
+ALP,2025,BWT Alpine,#00A1E8
+WIL,2025,Visa Cash App Racing Bulls,#6C98FF
+AMR,2025,Aston Martin Aramco,#229971
+AT,2025,Atlassian Williams Racing,#1868DB
+SAU,2025,STAKE Kick Sauber,#01C00E
+HAS,2025,MoneyGram Haas,#9C9FA2
+MER,2026,Mercedes-AMG Petronas,#75F1D3
+RBR,2026,Oracle Red Bull Racing,#4570C0
+FER,2026,Scuderia Ferrari HP,#D52E37
+MCL,2026,McLaren Mastercard,#ef8733
+ALP,2026,BWT Alpine,#479FE2
+WIL,2026,Visa Cash App Racing Bulls,#7091f8
+AMR,2026,Aston Martin Aramco,#4B9774
+AT,2026,Atlassian Williams,#3267D4
+SAU,2026,Audi Revolut,#EB4526
+HAS,2026,TGR Haas,#DFE1E2
+CAD,2026,Cadillac,#AAAADD
