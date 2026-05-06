@@ -1,65 +1,63 @@
 import db from '../db.js';
 
 export const getRaces = async (req, res) => {
-    const { season, circuit } = req.query;
+    const { season = 'All', circuit = 'All' } = req.query;
 
     try {
-        // find race
-        let raceQuery = `
-            SELECT r.RaceID
-            FROM RACES r
-            JOIN CIRCUITS c ON r.CircuitID = c.CircuitID
-            WHERE 1=1
-        `;
-
+        const bothSelected = season !== 'All' && circuit !== 'All';
         const params = [];
 
-        if (season !== 'All') {
-            raceQuery += ` AND r.Season = ?`;
-            params.push(season);
-        }
-
-        if (circuit !== 'All') {
-            raceQuery += ` AND c.CircuitName = ?`;
-            params.push(circuit);
-        }
-
-        const [raceRows] = await db.query(raceQuery, params);
-
-        // if both selected → return results
-        if (season !== 'All' && circuit !== 'All') {
-            if (raceRows.length === 0) {
-                return res.json({ type: 'none' });
-            }
-
-            const raceId = raceRows[0].RaceID;
-
+        if (bothSelected) {
+            // Single query — race info + results in one shot
             const [results] = await db.query(`
-                SELECT res.Pos, d.Abbrev, t.TeamName, res.Points, res.Standings, res.LapTime
-                FROM RESULTS res
-                JOIN DRIVERS d ON res.DriverID = d.DriverID
-                JOIN TEAMS t ON res.TeamID = t.TeamID
-                WHERE res.RaceID = ?
-                ORDER BY res.Pos IS NULL, res.Pos
-            `, [raceId]);
+        SELECT
+          res.Pos,
+          d.Abbrev       AS Driver,
+          st.DisplayName AS Team,
+          res.Points,
+          res.Standings,
+          res.LapTime,
+          r.RaceName,
+          r.Season,
+          r.RaceDate
+        FROM RESULTS res
+        JOIN RACES r    ON res.RaceID   = r.RaceID
+        JOIN CIRCUITS c ON r.CircuitID  = c.CircuitID
+        JOIN DRIVERS d  ON res.DriverID = d.DriverID
+        JOIN SEASON_TEAMS st ON res.TeamID = st.TeamID AND st.Season = r.Season
+        WHERE r.Season = ? AND c.CircuitName = ?
+        ORDER BY res.Pos IS NULL, res.Pos
+      `, [season, circuit]);
 
+            if (results.length === 0) return res.json({ type: 'none' });
             return res.json({ type: 'results', data: results });
         }
 
-        // otherwise return races
-        const [races] = await db.query(`
-            SELECT r.RaceID, r.RaceName, r.Season, r.RaceNumber, c.CircuitName
-            FROM RACES r
-            JOIN CIRCUITS c ON r.CircuitID = c.CircuitID
-            WHERE (? = 'All' OR r.Season = ?)
-            AND (? = 'All' OR c.CircuitName = ?)
-            ORDER BY r.Season, r.RaceNumber
-        `, [season, season, circuit, circuit]);
+        // Otherwise return race list
+        let query = `
+      SELECT
+        r.RaceID,
+        r.RaceName,
+        r.Season,
+        r.RaceNumber,
+        r.RaceDate,
+        c.CircuitName,
+        c.Country
+      FROM RACES r
+      JOIN CIRCUITS c ON r.CircuitID = c.CircuitID
+      WHERE 1=1
+    `;
 
-        res.json({ type: 'races', data: races });
+        if (season !== 'All') { query += ` AND r.Season = ?`; params.push(season); }
+        if (circuit !== 'All') { query += ` AND c.CircuitName = ?`; params.push(circuit); }
+
+        query += ` ORDER BY r.Season, r.RaceNumber`;
+
+        const [races] = await db.query(query, params);
+        return res.json({ type: 'races', data: races });
 
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Server error");
+        console.error('getRaces error:', err.message);
+        res.status(500).json({ error: 'Internal server error' });
     }
 };

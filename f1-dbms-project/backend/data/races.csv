@@ -1,3 +1,4 @@
+RaceID,CircuitID,Season,RaceNumber,RaceName,RaceDate,Laps,Weather
 1,1,2021,1,Bahrain,2021-03-28,56,Sunny & Dry
 2,2,2021,2,Emilia Romagna,2021-04-18,63,Dry to Wet
 3,3,2021,3,Portuguese,2021-05-02,66,Cool & Dry

@@ -1,9 +1,11 @@
-const fs = require('fs');
-const path = require('path');
-const { parse } = require('csv-parse/sync');
-const db = require('./db');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { parse } from 'csv-parse/sync';
+import { createConnection } from 'mysql2/promise';
 
-// ── Helpers ──────────────────────────────────────────────────────────────────
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function loadCSV(filename) {
     const file = fs.readFileSync(path.join(__dirname, 'data', filename));
@@ -14,19 +16,14 @@ function nullable(val) {
     return val === '' || val === undefined ? null : val;
 }
 
-// ── Schema ────────────────────────────────────────────────────────────────────
-
 async function runSchema(conn) {
-    const sql = fs.readFileSync(path.join(__dirname, 'schema.sql'), 'utf8');
-    // Split on semicolons, filter blanks, run each statement
+    const sql = fs.readFileSync(path.join(__dirname, 'data', 'schema.sql'), 'utf8');
     const statements = sql.split(';').map(s => s.trim()).filter(Boolean);
     for (const stmt of statements) {
         await conn.query(stmt);
     }
     console.log('Schema applied');
 }
-
-// ── Seeders ───────────────────────────────────────────────────────────────────
 
 async function seedTeams(conn) {
     const rows = loadCSV('teams.csv');
@@ -43,13 +40,14 @@ async function seedSeasonTeams(conn) {
     const rows = loadCSV('season_teams.csv');
     for (const r of rows) {
         await conn.query(
-            `INSERT IGNORE INTO SEASON_TEAMS (TeamID, Season, DisplayName, ColorPrimary, ColorSecondary)
-       VALUES (?, ?, ?, ?, ?)`,
-            [r.TeamID, r.Season, nullable(r.DisplayName), nullable(r.ColorPrimary), nullable(r.ColorSecondary)]
+            `INSERT IGNORE INTO SEASON_TEAMS (TeamID, Season, DisplayName, Color)
+       VALUES (?, ?, ?, ?)`,
+            [r.TeamID, r.Season, nullable(r.DisplayName), nullable(r.Color)]
         );
     }
     console.log(`SEASON_TEAMS: ${rows.length} rows`);
 }
+
 
 async function seedDrivers(conn) {
     const rows = loadCSV('drivers.csv');
@@ -163,15 +161,18 @@ async function seedVisitDepartments(conn) {
     console.log(`VISIT_DEPARTMENTS: ${rows.length} rows`);
 }
 
-// ── Main ──────────────────────────────────────────────────────────────────────
-
 async function seed() {
-    const conn = await db.getConnection();
+    const conn = await createConnection({
+        host: '127.0.0.1',
+        user: 'root',
+        password: 'root',
+        database: 'f1dbms',
+        port: 3306,
+        multipleStatements: true        // needed for schema.sql
+    });
 
     try {
         await runSchema(conn);
-
-        // FK-safe insertion order
         await seedTeams(conn);
         await seedSeasonTeams(conn);
         await seedDrivers(conn);
@@ -183,12 +184,11 @@ async function seed() {
         await seedChampionships(conn);
         await seedVisits(conn);
         await seedVisitDepartments(conn);
-
         console.log('\nSeed complete');
     } catch (err) {
         console.error('Seed failed:', err.message);
     } finally {
-        conn.release();
+        await conn.end();
         process.exit();
     }
 }

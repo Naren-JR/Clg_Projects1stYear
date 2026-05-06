@@ -1,3 +1,4 @@
+StaffID,TeamID,DriverID,StaffName,StaffRole,Season
 1,RBR,NULL,Christian Horner,Team Principal,2021
 2,RBR,NULL,Pierre Waché,Technical Director,2021
 3,RBR,NULL,Hannah Schmitz,Chief Strategist,2021
