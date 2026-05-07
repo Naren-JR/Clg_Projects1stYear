@@ -1,37 +1,38 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 
-import Home from './pages/Home'
-import Visit from './pages/Visit'
-import Stats from './pages/Stats'
-import Races from './pages/Races'
-import Navbar from './components/Navbar'
-import NxtRace from './components/NxtRace'
+import Home from "./pages/Home";
+import Visit from "./pages/Visit";
+import Stats from "./pages/Stats";
+import Races from "./pages/Races";
+import Teams from "./pages/Teams";
+import Navbar from "./components/Navbar";
+import NxtRace from "./components/NxtRace";
 
-import './App.css'
+import "./App.css";
 
 function App() {
+  useEffect(() => {
+    fetch("http://localhost:5000/test")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
 
-	useEffect(() => {
-		fetch("http://localhost:5000/test")
-			.then(res => res.json())
-			.then(data => {
-				console.log(data);
-			});
-	}, []);
+  return (
+    <>
+      <Navbar />
 
-	return (
-		<>
-			<Navbar />
-
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/Races" element={<Races />} />
-				<Route path="/Stats" element={<Stats />} />
-				<Route path="/Visit" element={<Visit />} />
-			</Routes>
-		</>
-	)
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Races" element={<Races />} />
+        <Route path="/Stats" element={<Stats />} />
+        <Route path="/Visit" element={<Visit />} />
+        <Route path="/teams" element={<Teams />} />
+      </Routes>
+    </>
+  );
 }
 
-export default App
+export default App;
