@@ -45,7 +45,7 @@ function Races() {
             {/* FILTERS */}
             <div className="filters">
                 <select value={season} onChange={(e) => setSeason(e.target.value)}>
-                    <option value="2025">2026</option>
+                    <option value="2026">2026</option>
                     <option value="2025">2025</option>
                     <option value="2024">2024</option>
                     <option value="2023">2023</option>
