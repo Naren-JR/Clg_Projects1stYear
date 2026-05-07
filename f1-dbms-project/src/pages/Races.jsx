@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import '../css-pages/Races.css';
+import { useState, useEffect } from "react";
+import "../css-pages/Races.css";
 
 function Races() {
-    const [season, setSeason] = useState('2026');
-    const [circuit, setCircuit] = useState('All');
+    const [season, setSeason] = useState("2026");
+    const [circuit, setCircuit] = useState("All");
     const [races, setRaces] = useState([]);
     const [results, setResults] = useState([]);
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState("");
 
     useEffect(() => {
         fetchRaces();
@@ -15,18 +15,18 @@ function Races() {
     const fetchRaces = async () => {
         try {
             const res = await fetch(
-                `http://localhost:5000/races?season=${season}&circuit=${circuit}`
+                `http://localhost:5000/races?season=${season}&circuit=${circuit}`,
             );
 
             const data = await res.json();
             console.log("API DATA:", data);
 
-            setMessage('');
+            setMessage("");
 
-            if (data.type === 'results') {
+            if (data.type === "results") {
                 setResults(data.data);
                 setRaces([]);
-            } else if (data.type === 'races') {
+            } else if (data.type === "races") {
                 setRaces(data.data);
                 setResults([]);
             } else {
@@ -51,7 +51,6 @@ function Races() {
                     <option value="2023">2023</option>
                     <option value="2022">2022</option>
                     <option value="2021">2021</option>
-
                 </select>
 
                 <select value={circuit} onChange={(e) => setCircuit(e.target.value)}>
@@ -100,28 +99,30 @@ function Races() {
 
                 <tbody>
                     {/* ALL → winners */}
-                    {circuit === "All" && races.map((race, i) => (
-                        <tr key={i}>
-                            <td>{race.RaceName}</td>
-                            <td>1</td>
-                            <td>{race.Winner || "-"}</td>
-                            <td>{race.Team || "-"}</td>
-                            <td>{race.Points || "-"}</td>
-                            <td>{race.LapTime || "-"}</td>
-                        </tr>
-                    ))}
+                    {circuit === "All" &&
+                        races.map((race, i) => (
+                            <tr key={i}>
+                                <td>{race.RaceName}</td>
+                                <td>1</td>
+                                <td>{race.Winner || "-"}</td>
+                                <td>{race.Team || "-"}</td>
+                                <td>{race.Points || "-"}</td>
+                                <td>{race.LapTime || "-"}</td>
+                            </tr>
+                        ))}
 
                     {/* SPECIFIC → full results */}
-                    {circuit !== "All" && results.map((r, i) => (
-                        <tr key={i}>
-                            <td>{r.RaceName}</td>
-                            <td>{r.Pos}</td>
-                            <td>{r.Driver}</td>
-                            <td>{r.Team}</td>
-                            <td>{r.Points}</td>
-                            <td>{r.LapTime || '-'}</td>
-                        </tr>
-                    ))}
+                    {circuit !== "All" &&
+                        results.map((r, i) => (
+                            <tr key={i}>
+                                <td>{r.RaceName}</td>
+                                <td>{r.Pos}</td>
+                                <td>{r.Driver}</td>
+                                <td>{r.Team}</td>
+                                <td>{r.Points}</td>
+                                <td>{r.LapTime || "-"}</td>
+                            </tr>
+                        ))}
                     {console.log(results[0])}
                     {/* EMPTY */}
                     {races.length === 0 && results.length === 0 && (
