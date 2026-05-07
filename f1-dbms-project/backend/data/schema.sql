@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS PITWALL (
     DriverID INT NULL,
     StaffName VARCHAR(100),
     StaffRole VARCHAR(100),
-    Season Year,
+    Season YEAR,
     FOREIGN KEY (TeamID) REFERENCES TEAMS(TeamID),
     FOREIGN KEY (DriverID) REFERENCES DRIVERS(DriverID)
 );
