@@ -1,0 +1,85 @@
+PROJECT STYLE SYSTEM
+
+This project uses a global theme inside App.css.
+
+DESIGN STYLE:
+- Dark futuristic F1 aesthetic
+- Premium/glassmorphism cards
+- Minimal red accent (#ff1e00)
+- Soft borders
+- Subtle gradients
+- Black/dark gray backgrounds
+- Clean spacing
+- Modern dashboard feel
+- F1 TV / Mercedes AMG inspired
+- Avoid excessive neon/glow
+- Avoid oversaturated gamer UI
+
+GLOBAL CLASSES AVAILABLE:
+
+.page-container
+- Main page wrapper
+- Applies background and page padding
+
+.glass-card
+- Reusable premium card style
+- Rounded corners
+- Dark gradient background
+- Soft shadow
+- Hover animation
+
+.hero-grid
+- Two-column top section layout
+
+.hero-card
+- Top showcase card
+
+.hero-label
+- Small uppercase muted section label
+
+.section-header
+- Reusable page section heading wrapper
+
+.header-line
+- Small red accent line below headings
+
+.grid-layout
+- Responsive card grid
+
+NAVBAR STYLE:
+- Sticky blurred navbar
+- Semi-transparent dark background
+- Minimal hover effects
+- Rounded hover backgrounds
+- Thin accent underline on active links
+
+GENERAL RULES:
+- Keep layouts clean and cinematic
+- Prefer subtle animations
+- Avoid clutter
+- Use spacing instead of borders
+- Use modern dashboard structure
+- Cards should feel premium
+- Avoid bright backgrounds
+- Avoid excessive text
+- Responsive design preferred
+
+CSS VARIABLES AVAILABLE:
+
+--bg-main
+--bg-card
+--border-soft
+--text-main
+--text-muted
+--accent
+--shadow-soft
+--transition
+--radius-large
+--radius-medium
+--page-padding
+
+WHEN GENERATING NEW PAGES:
+- Reuse existing theme system
+- Reuse global classes whenever possible
+- Only create page-specific CSS when needed
+- Keep style visually consistent with Teams page

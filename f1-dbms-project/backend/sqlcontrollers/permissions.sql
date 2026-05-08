@@ -1,0 +1,10 @@
+CREATE USER IF NOT EXISTS 'admin_user'@'localhost'
+IDENTIFIED BY 'admin123';
+
+GRANT SELECT
+ON f1DBMS.ADMIN_VISIT_OVERVIEW
+TO 'admin_user'@'localhost';
+
+REVOKE SELECT
+ON f1DBMS.FULL_VISIT_DETAILS
+FROM 'admin_user'@'localhost';

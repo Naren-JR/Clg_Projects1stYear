@@ -1,40 +1,130 @@
 .navbar {
-    margin: 20px 0px 20px 0px;
-    padding: 0px 50px 0px 50px;
-    border-bottom: solid 1px #535376;
+
+    position: sticky;
+    top: 0;
+    z-index: 999;
+
+    padding:
+        18px 50px;
 
     display: flex;
     align-items: center;
+
+    backdrop-filter: blur(14px);
+
+    background:
+        linear-gradient(to right,
+            rgba(10, 10, 10, 0.88),
+            rgba(6, 6, 6, 0.82));
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.06);
 }
+
+
+/* BRAND */
 
 .brand {
-    justify-content: left;
-    align-self: center;
+
+    color: white;
+
+    font-size: 1.4rem;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    user-select: none;
 }
 
+
+/* LINKS */
+
 .links {
-    height: 100%;
+
     width: 100%;
 
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 10px;
 }
 
+
+/* LINK */
+
 .link {
-    font-size: 18px;
-    color: white;
+
+    position: relative;
+
+    padding:
+        12px 20px;
+
+    color: rgba(255, 255, 255, 0.78);
+
     text-decoration: none;
 
+    font-size: 0.95rem;
+    font-weight: 500;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 12px;
 
-    padding: 12px 20px 12px 20px;
-    border-bottom: solid 1px transparent;
+    transition:
+        color 0.35s ease,
+        background 0.35s ease;
 }
 
 .link:hover {
-    border-bottom-color: white;
+
+    color: white;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+}
+
+
+/* ACTIVE LINK */
+
+.link.active {
+
+    color: white;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+}
+
+.link.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 15%;
+    bottom: 0;
+
+    width: 70%;
+    height: 2px;
+
+    border-radius: 999px;
+
+    background: #ff1e00;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .navbar {
+
+        flex-direction: column;
+
+        gap: 18px;
+
+        padding: 20px;
+    }
+
+    .links {
+
+        flex-wrap: wrap;
+    }
+
 }

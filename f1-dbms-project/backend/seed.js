@@ -47,7 +47,7 @@ async function seedSeasonTeams(conn) {
   for (const r of rows) {
     await conn.query(
       `INSERT IGNORE INTO SEASON_TEAMS (TeamID, Season, DisplayName, Color)
-       VALUES (?, ?, ?, ?)`,
+        VALUES (?, ?, ?, ?)`,
       [r.TeamID, r.Season, nullable(r.DisplayName), nullable(r.Color)],
     );
   }
@@ -59,7 +59,7 @@ async function seedDrivers(conn) {
   for (const r of rows) {
     await conn.query(
       `INSERT IGNORE INTO DRIVERS (Abbrev, FirstName, LastName, Nationality, DOB, DebutYear, DriverRole)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [
         r.Abbrev,
         r.FirstName,
@@ -74,12 +74,24 @@ async function seedDrivers(conn) {
   console.log(`DRIVERS: ${rows.length} rows`);
 }
 
+async function seedDriverNumbers(conn) {
+  const rows = loadCSV("driver_numbers.csv");
+  for (const r of rows) {
+    await conn.query(
+      `INSERT IGNORE INTO Driver_Numbers (DriverID, Season, DriverNumber, DriverImage)
+        VALUES (?, ?, ?, ?)`,
+      [r.DriverID, r.Season, r.DriverNumber, r.DriverImage],
+    );
+  }
+  console.log(`Driver_Numbers: ${rows.length} rows`);
+}
+
 async function seedCircuits(conn) {
   const rows = loadCSV("circuits.csv");
   for (const r of rows) {
     await conn.query(
       `INSERT IGNORE INTO CIRCUITS (CircuitID, CircuitName, Country, CircuitLength_km, Turns)
-       VALUES (?, ?, ?, ?, ?)`,
+        VALUES (?, ?, ?, ?, ?)`,
       [r.CircuitID, r.CircuitName, r.Country, r.CircuitLength_km, r.Turns],
     );
   }
@@ -90,16 +102,16 @@ async function seedCars(conn) {
   const rows = loadCSV("cars.csv");
   for (const r of rows) {
     await conn.query(
-      `INSERT IGNORE INTO CARS (CarID, TeamID, Chassis, PowerUnit, EngineSupplier, Weight, Season)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT IGNORE INTO CARS (CarID, TeamID, Chassis, PowerUnit, EngineSupplier, Season, CarImage)
+        VALUES (?, ?, ?, ?, ?, ?)`,
       [
         r.CarID,
         r.TeamID,
         r.Chassis,
         nullable(r.PowerUnit),
         nullable(r.EngineSupplier),
-        nullable(r.Weight),
         r.Season,
+        r.CarImage,
       ],
     );
   }
@@ -111,7 +123,7 @@ async function seedPitwall(conn) {
   for (const r of rows) {
     await conn.query(
       `INSERT IGNORE INTO PITWALL (StaffID, TeamID, DriverID, StaffName, StaffRole, Season)
-       VALUES (?, ?, ?, ?, ?, ?)`,
+        VALUES (?, ?, ?, ?, ?, ?)`,
       [
         r.StaffID,
         r.TeamID,
@@ -130,7 +142,7 @@ async function seedRaces(conn) {
   for (const r of rows) {
     await conn.query(
       `INSERT IGNORE INTO RACES (RaceID, CircuitID, Season, RaceNumber, RaceName, RaceDate, Laps, Weather)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         r.RaceID,
         r.CircuitID,
@@ -151,7 +163,7 @@ async function seedResults(conn) {
   for (const r of rows) {
     await conn.query(
       `INSERT IGNORE INTO RESULTS (ResultID, RaceID, DriverID, TeamID, Pos, Points, Standings, LapTime)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         r.ResultID,
         r.RaceID,
@@ -172,7 +184,7 @@ async function seedChampionships(conn) {
   for (const r of rows) {
     await conn.query(
       `INSERT IGNORE INTO CHAMPIONSHIPS (ChampionID, Season, Category, DriverID, TeamID, Points, Wins)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [
         r.ChampionID,
         r.Season,
@@ -187,47 +199,11 @@ async function seedChampionships(conn) {
   console.log(`CHAMPIONSHIPS: ${rows.length} rows`);
 }
 
-async function seedVisits(conn) {
-  const rows = loadCSV("visits.csv");
-  for (const r of rows) {
-    await conn.query(
-      `INSERT IGNORE INTO VISITS
-        (FormID, FullName, Email, Phone, Gender, DOB, Team, PreferredDate, TotalVisitors, TourDuration, SpecialRequests)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        r.FormID,
-        r.FullName,
-        r.Email,
-        r.Phone,
-        nullable(r.Gender),
-        nullable(r.DOB),
-        nullable(r.Team),
-        r.PreferredDate,
-        r.TotalVisitors,
-        r.TourDuration,
-        nullable(r.SpecialRequests),
-      ],
-    );
-  }
-  console.log(`VISITS: ${rows.length} rows`);
-}
-
-async function seedVisitDepartments(conn) {
-  const rows = loadCSV("visit_departments.csv");
-  for (const r of rows) {
-    await conn.query(
-      "INSERT IGNORE INTO VISIT_DEPARTMENTS (FormID, Department) VALUES (?, ?)",
-      [r.FormID, r.Department],
-    );
-  }
-  console.log(`VISIT_DEPARTMENTS: ${rows.length} rows`);
-}
-
 async function seed() {
   const conn = await createConnection({
     host: "127.0.0.1",
     user: "root",
-    password: "Balaji",
+    password: "root",
     database: "f1dbms",
     port: 3306,
     multipleStatements: true, // needed for schema.sql
@@ -238,14 +214,13 @@ async function seed() {
     await seedTeams(conn);
     await seedSeasonTeams(conn);
     await seedDrivers(conn);
+    await seedDriverNumbers(conn);
     await seedCircuits(conn);
     await seedCars(conn);
     await seedPitwall(conn);
     await seedRaces(conn);
     await seedResults(conn);
     await seedChampionships(conn);
-    await seedVisits(conn);
-    await seedVisitDepartments(conn);
     console.log("\nSeed complete");
   } catch (err) {
     console.error("Seed failed:", err.message);

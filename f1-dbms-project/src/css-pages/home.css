@@ -1,140 +1,364 @@
-/* ================= TELEMETRY (MODERN MATCH) ================= */
+.home-container {
 
-.telemetry-section {
-    margin: 40px;
-    padding: 30px;
-
-    border-radius: 14px;
-
-    background: rgba(0, 0, 0, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-
-    backdrop-filter: blur(10px);
-}
-
-/* TITLE */
-.telemetry-section h2 {
-    margin-bottom: 20px;
-    font-size: 1.6rem;
-    font-weight: 500;
-}
-
-/* CONTROLS */
-.controls {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-
-.controls select {
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: none;
-
-    background: #111;
-    color: white;
-
-    font-family: "Titillium Web";
-    cursor: pointer;
-
-    transition: 0.2s ease;
-}
-
-.controls select:hover {
-    background: #1a1a1a;
-}
-
-/* SPEEDOMETER */
-.speedometer-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-
-    margin: 20px 0;
-}
-
-/* SVG */
-.speedometer-wrap svg {
-    width: 260px;
-    height: 150px;
-}
-
-/* ARC */
-#arcFill {
-    stroke: #ff1e00;
-    filter: drop-shadow(0 0 8px rgba(255, 30, 0, 0.7));
-    transition: stroke-dashoffset 0.15s linear;
-}
-
-/* DIGITAL DISPLAY */
-.digital-readouts {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 50px;
+
+    padding: 40px;
 }
 
-.digital-readouts h1 {
-    font-size: 2.8rem;
-    color: #ff1e00;
-    font-family: "Orbitron";
+
+/* ================= NEWS ================= */
+
+.news-section {
+
+    display: grid;
+
+    grid-template-columns: 1.4fr 1fr;
+
+    gap: 24px;
+
+    align-items: start;
 }
 
-.digital-readouts p {
-    font-size: 0.95rem;
-    color: #ccc;
-}
 
-/* THROTTLE */
-#throttleInput {
-    width: 100%;
-    margin-top: 10px;
+/* MAIN HEADLINE */
 
-    accent-color: #ff1e00;
-}
+.news-headline {
 
-/* BUTTONS */
-.buttons {
-    margin-top: 20px;
-    display: flex;
-    gap: 12px;
-}
+    position: relative;
 
-.buttons button {
-    padding: 10px 18px;
-    border-radius: 8px;
-    border: none;
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    height: 420px;
 
     background: #111;
-    color: white;
-
-    cursor: pointer;
-    transition: 0.25s ease;
-
-    font-family: "Titillium Web";
 }
 
-.buttons button:hover {
-    background: #ff1e00;
-    box-shadow: 0 0 10px rgba(255, 30, 0, 0.4);
+.news-headline img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.5s ease;
 }
 
-/* ACTIVE / DISABLED */
-.buttons button:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
+.news-headline:hover img {
+
+    transform: scale(1.04);
 }
+
+
+/* OVERLAY */
+
+.news-overlay {
+
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: flex-end;
+
+    padding: 40px;
+
+    background:
+        linear-gradient(to top,
+            rgba(0, 0, 0, 0.92),
+            rgba(0, 0, 0, 0.2),
+            transparent);
+}
+
+.news-overlay h2 {
+
+    font-size: 2rem;
+
+    max-width: 75%;
+
+    line-height: 1.1;
+}
+
+
+/* SIDE NEWS */
+
+.news-side {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+
+    height: 420px;
+}
+
+.news-card {
+
+    flex: 1;
+
+    display: flex;
+    gap: 16px;
+
+    padding: 14px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(160deg,
+            rgba(16, 16, 16, 0.96),
+            rgba(8, 8, 8, 0.96));
+
+    border:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    transition:
+        transform 0.3s ease,
+        border 0.3s ease;
+}
+
+.news-card:hover {
+
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(255, 255, 255, 0.12);
+}
+
+.news-card img {
+
+    width: 110px;
+    height: 90px;
+
+    border-radius: 12px;
+
+    object-fit: cover;
+}
+
+.news-card p {
+
+    display: flex;
+    align-items: center;
+
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+
+/* ================= CHAMPION ================= */
+
+.champions-section {
+
+    width: 100%;
+}
+
+.champion-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 320px;
+
+    padding: 50px 70px;
+
+    border-radius: 28px;
+
+    background:
+
+        radial-gradient(circle at left,
+            #ef8733,
+            transparent 75%),
+
+        linear-gradient(120deg,
+            rgba(20, 20, 20, 0.98),
+            rgba(5, 5, 5, 0.98));
+
+    border:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    box-shadow:
+        inset 0 0 40px rgba(255, 255, 255, 0.015),
+        0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+
+/* SUBTLE DIVIDER */
+
+.champion-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 34%;
+
+    transform: translateY(-50%);
+
+    width: 1px;
+    height: 72%;
+
+    background:
+        linear-gradient(to bottom,
+            transparent,
+            rgba(255, 255, 255, 0.08),
+            transparent);
+}
+
+
+/* TEXT */
+
+.champion-left {
+
+    position: relative;
+
+    z-index: 5;
+
+    max-width: 45%;
+}
+
+.champion-left h3 {
+
+    color: rgba(0, 0, 0);
+
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 22px;
+
+    font-size: 0.95rem;
+
+    font-weight: 600;
+}
+
+.champion-left h1 {
+
+    font-size: 5.2rem;
+
+    line-height: 0.92;
+
+    margin-bottom: 28px;
+
+    letter-spacing: -4px;
+
+    font-weight: 700;
+}
+
+.champion-left p {
+
+    color: #ffffff;
+
+    font-size: 1rem;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    font-weight: 600;
+}
+
+
+/* IMAGE */
+
+.champion-img {
+
+    position: absolute;
+
+    right: 10px;
+    bottom: -500px;
+
+    height: 250%;
+
+    object-fit: contain;
+
+    opacity: 0.92;
+
+    z-index: 3;
+}
+
+
+/* GLOW */
+
+.champion-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: -140px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle,
+            rgba(255, 160, 60, 0.10),
+            transparent 70%);
+
+    pointer-events: none;
+}
+
 
 /* ================= RESPONSIVE ================= */
 
-@media (max-width: 900px) {
-    .speedometer-wrap {
-        flex-direction: column;
-        gap: 20px;
+@media (max-width: 700px) {
+
+    .champion-card {
+
+        padding: 40px 30px;
     }
 
-    .digital-readouts h1 {
-        font-size: 2rem;
+    .champion-left h1 {
+
+        font-size: 2.8rem;
+
+        letter-spacing: -2px;
     }
+
+    .champion-left h3 {
+
+        font-size: 0.8rem;
+    }
+
+    .champion-left p {
+
+        font-size: 0.9rem;
+
+        letter-spacing: 2px;
+    }
+
+}
+
+@media (max-width: 1000px) {
+
+    .news-section {
+
+        grid-template-columns: 1fr;
+    }
+
+    .champion-card {
+
+        min-height: 420px;
+    }
+
+    .champion-img {
+
+        opacity: 0.3;
+
+        right: -20px;
+
+        height: 90%;
+    }
+
 }

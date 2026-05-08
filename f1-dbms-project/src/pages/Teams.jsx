@@ -13,6 +13,7 @@ function Teams() {
 
   const fetchTeams = async () => {
     try {
+
       const res = await fetch("http://localhost:5000/teams");
       const data = await res.json();
 
@@ -26,46 +27,128 @@ function Teams() {
   };
 
   return (
-    <div className="teams-container">
+    <div className="teams-page">
 
-      {/* 🏆 HEADER */}
+      {/* HERO */}
       <div className="teams-hero">
-        <div className="champ-box">
-          <h3>2025 Champion</h3>
+
+        <div
+          className="hero-card champion"
+          style={{
+            borderColor: champion?.Color || "#ff1e00",
+            boxShadow: `0 0 30px ${champion?.Color || "#ff1e00"}22`
+          }}
+        >
+
+          <p className="hero-label">
+            2025 Constructor Champion
+          </p>
+
           <h1>{champion?.Team || "-"}</h1>
-          <p>{champion?.Points} pts</p>
+
+          <span
+            style={{
+              color: champion?.Color || "#ff1e00"
+            }}
+          >
+            {champion?.Points || 0} PTS
+          </span>
+
         </div>
 
-        <div className="leader-box">
-          <h3>2026 Leader</h3>
+        <div
+          className="hero-card leader"
+          style={{
+            borderColor: leader?.Color || "#ff1e00",
+            boxShadow: `0 0 30px ${leader?.Color || "#ff1e00"}22`
+          }}
+        >
+
+          <p className="hero-label">
+            2026 Championship Leader
+          </p>
+
           <h1>{leader?.Team || "-"}</h1>
-          <p>{leader?.Points} pts</p>
+
+          <span
+            style={{
+              color: leader?.Color || "#ff1e00"
+            }}
+          >
+            {leader?.Points || 0} PTS
+          </span>
+
         </div>
+
       </div>
 
-      {/* 🧱 TEAM GRID */}
+      {/* SECTION TITLE */}
+      <div className="section-header">
+
+        <h2>Constructors Grid</h2>
+
+        <div className="header-line"></div>
+
+      </div>
+
+      {/* TEAM GRID */}
       <div className="teams-grid">
+
         {teams.map((team, i) => (
-          <div key={i} className="team-card">
 
-            <h2>{team.Team}</h2>
+          <div
+            key={i}
+            className="team-card"
+          >
 
-            <p><span>Engine:</span> {team.Engine}</p>
+            {/* CAR IMAGE */}
+            <div className="car-image-wrapper">
 
-            <p>
-              <span>Drivers:</span>
-              {team.drivers.join(", ") || "-"}
-            </p>
+              <img
+                src={`/cars/${team.TeamID}.png`}
+                alt={team.Team}
+                className="car-image"
+                onError={(e) => {
+                  e.target.src =
+                    "https://placehold.co/600x240/111111/ff1e00?text=F1+CAR";
+                }}
+              />
 
-            {/* PIT WALL */}
-            <div className="pitwall">
-              <div className="pit-light green"></div>
-              <div className="pit-light yellow"></div>
-              <div className="pit-light red"></div>
+            </div>
+
+            {/* TEAM INFO */}
+            <div className="team-content">
+
+              <div className="team-top">
+
+                <h2>{team.Team}</h2>
+
+                <div className="team-points">
+                  {team.Points || 0} pts
+                </div>
+
+              </div>
+
+              <div className="team-meta">
+
+                <p>
+                  <span>Engine</span>
+                  {team.EngineSupplier || "-"}
+                </p>
+
+                <p>
+                  <span>Drivers</span>
+                  {team.drivers?.join(" • ") || "-"}
+                </p>
+
+              </div>
+
             </div>
 
           </div>
+
         ))}
+
       </div>
 
     </div>

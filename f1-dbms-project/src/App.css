@@ -1,0 +1,357 @@
+/* =========================
+   GLOBAL PAGE STYLE SYSTEM
+   ========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: #060606;
+    overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+
+    --bg-main: #060606;
+
+    --bg-card:
+        linear-gradient(160deg,
+            rgba(16, 16, 16, 0.98),
+            rgba(6, 6, 6, 0.98));
+
+    --border-soft: rgba(255, 255, 255, 0.06);
+
+    --text-main: #ffffff;
+    --text-muted: #9ca3af;
+
+    --accent: #ff1e00;
+
+    --shadow-soft:
+        0 10px 30px rgba(0, 0, 0, 0.45);
+
+    --transition:
+        0.35s ease;
+
+    --radius-large: 22px;
+    --radius-medium: 16px;
+
+    --page-padding: 40px;
+}
+
+
+/* =========================
+   PAGE
+   ========================= */
+
+.page-container {
+
+    min-height: 100vh;
+
+    padding: var(--page-padding);
+
+    color: var(--text-main);
+
+    background:
+        radial-gradient(circle at top left,
+            rgba(80, 0, 0, 0.22),
+            transparent 28%),
+
+        radial-gradient(circle at bottom right,
+            rgba(40, 0, 60, 0.18),
+            transparent 28%),
+
+        var(--bg-main);
+}
+
+
+/* =========================
+   SECTION HEADERS
+   ========================= */
+
+.section-header {
+
+    margin-bottom: 24px;
+}
+
+.section-header h2 {
+
+    font-size: 1.7rem;
+    font-weight: 600;
+
+    margin-bottom: 10px;
+}
+
+.header-line {
+
+    width: 120px;
+    height: 3px;
+
+    border-radius: 999px;
+
+    background: var(--accent);
+}
+
+
+/* =========================
+   CARDS
+   ========================= */
+
+.glass-card {
+
+    background: var(--bg-card);
+
+    border: 1px solid var(--border-soft);
+
+    border-radius: var(--radius-large);
+
+    box-shadow: var(--shadow-soft);
+
+    overflow: hidden;
+
+    transition:
+        transform var(--transition),
+        border var(--transition),
+        box-shadow var(--transition);
+}
+
+.glass-card:hover {
+
+    transform: translateY(-6px);
+
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================
+   HERO / TOP CARDS
+   ========================= */
+
+.hero-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 24px;
+
+    margin-bottom: 50px;
+}
+
+.hero-card {
+
+    padding: 28px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.hero-label {
+
+    color: var(--text-muted);
+
+    font-size: 0.85rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+}
+
+.hero-card h1 {
+
+    font-size: 2.5rem;
+
+    margin-bottom: 10px;
+}
+
+.hero-card span {
+
+    color: var(--accent);
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   GRID
+   ========================= */
+
+.grid-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(340px, 1fr));
+
+    gap: 24px;
+}
+
+
+/* =========================
+   NAVBAR
+   ========================= */
+
+.navbar {
+
+    position: sticky;
+    top: 0;
+    z-index: 999;
+
+    margin-bottom: 30px;
+
+    padding:
+        18px 50px;
+
+    display: flex;
+    align-items: center;
+
+    backdrop-filter: blur(14px);
+
+    background:
+        linear-gradient(to right,
+            rgba(10, 10, 10, 0.88),
+            rgba(6, 6, 6, 0.82));
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.06);
+}
+
+
+/* BRAND */
+
+.brand {
+
+    color: white;
+
+    font-size: 1.4rem;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    user-select: none;
+}
+
+
+/* LINKS */
+
+.links {
+
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+/* LINK */
+
+.link {
+
+    position: relative;
+
+    padding:
+        12px 20px;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    text-decoration: none;
+
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    border-radius: 12px;
+
+    transition:
+        color var(--transition),
+        background var(--transition);
+}
+
+.link:hover {
+
+    color: white;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+}
+
+
+/* ACTIVE LINK */
+
+.link.active {
+
+    color: white;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+}
+
+.link.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 15%;
+    bottom: 0;
+
+    width: 70%;
+    height: 2px;
+
+    border-radius: 999px;
+
+    background: var(--accent);
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar {
+
+        flex-direction: column;
+
+        gap: 18px;
+
+        padding: 20px;
+    }
+
+    .links {
+
+        flex-wrap: wrap;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .page-container {
+        padding: 20px;
+    }
+
+    .hero-card h1 {
+        font-size: 2rem;
+    }
+
+}

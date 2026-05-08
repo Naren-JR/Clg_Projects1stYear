@@ -1,6 +1,7 @@
 import express from "express";
 import racesRoutes from "./routes/races.js";
 import teamsRoutes from "./routes/teams.js";
+import driversRoutes from "./routes/drivers.js";
 import db from "./db.js";
 import cors from "cors";
 
@@ -14,6 +15,7 @@ app.use(express.json());
 // routes
 app.use("/races", racesRoutes);
 app.use("/teams", teamsRoutes);
+app.use("/", driversRoutes);
 
 app.listen(5000, () => {
   console.log("Server running on port 5000");

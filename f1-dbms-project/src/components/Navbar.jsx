@@ -1,28 +1,77 @@
 import { Link } from "react-router-dom";
-import f1logo from "../assets/F1-logo.svg";
-
-import "../css-pages/navbar.css"
+import "../css-pages/Navbar.css";
 
 function Navbar() {
 
+    const user =
+        JSON.parse(localStorage.getItem("user"));
+
     return (
+
         <div className="navbar">
 
-            <div className="logo">
-                <Link to="/"><img src={f1logo} /></Link>
+            <div className="brand">
+                F1DBMS
             </div>
+
             <div className="links">
-                <Link to="/" className="link">Home</Link>
-                <Link to="/Teams" className="link">Teams</Link>
-                <Link to="/Drivers" className="link">Drivers</Link>
-                <Link to="/Races" className="link">Races</Link>
-                <Link to="/Stats" className="link">Stats</Link>
-                <Link to="/Visit" className="link">Visit</Link>
-                <Link to="/About" className="link">About</Link>
+
+                <Link className="link" to="/">
+                    Home
+                </Link>
+
+                <Link className="link" to="/drivers">
+                    Drivers
+                </Link>
+
+                <Link className="link" to="/teams">
+                    Teams
+                </Link>
+
+                <Link className="link" to="/races">
+                    Races
+                </Link>
+
+                <Link className="link" to="/visit">
+                    Visit
+                </Link>
+
+                {/* ADMIN ONLY */}
+
+                {
+                    user?.role === "admin" && (
+
+                        <Link
+                            className="link"
+                            to="/admin/visits"
+                        >
+                            Reservations
+                        </Link>
+
+                    )
+                }
+
+                {/* LOGIN */}
+
+                {
+                    !user && (
+
+                        <Link
+                            className="link"
+                            to="/login"
+                        >
+                            Login
+                        </Link>
+
+                    )
+                }
+
             </div>
 
         </div>
-    )
+
+    );
+
 }
 
-export default Navbar
+export default Navbar;

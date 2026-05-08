@@ -1,0 +1,68 @@
+.admin-page {
+
+    padding: 40px;
+}
+
+
+/* TABLE */
+
+.table-wrapper {
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    background:
+        linear-gradient(160deg,
+            rgba(14, 14, 14, 0.98),
+            rgba(5, 5, 5, 0.98));
+}
+
+.admin-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    color: white;
+}
+
+.admin-table thead {
+
+    background:
+        linear-gradient(to right,
+            rgba(255, 30, 0, 0.15),
+            rgba(255, 30, 0, 0.03));
+}
+
+.admin-table th {
+
+    padding:
+        20px;
+
+    text-align: left;
+
+    letter-spacing: 2px;
+
+    font-size: 0.9rem;
+
+    text-transform: uppercase;
+}
+
+.admin-table td {
+
+    padding:
+        18px 20px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.05);
+}
+
+.admin-table tbody tr:hover {
+
+    background:
+        rgba(255, 255, 255, 0.03);
+}

@@ -1,76 +1,245 @@
-.teams-container {
+.teams-page {
+  min-height: 100vh;
   padding: 40px;
   color: white;
+  background:
+    radial-gradient(circle at top left, #1a0000 0%, transparent 30%),
+    radial-gradient(circle at bottom right, #110011 0%, transparent 30%),
+    #060606;
 }
 
 /* HERO */
+
 .teams-hero {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 50px;
 }
 
-.champ-box,
-.leader-box {
-  flex: 1;
-  padding: 20px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #111, #1a1a1a);
-  border: 1px solid #ff1e00;
+.hero-card {
+  position: relative;
+  overflow: hidden;
+
+  padding: 28px;
+  border-radius: 18px;
+
+  background:
+    linear-gradient(145deg,
+      rgba(18, 18, 18, 0.95),
+      rgba(8, 8, 8, 0.95));
+
+  border: 1px solid;
+
+  backdrop-filter: blur(12px);
+
+  transition:
+    transform 0.35s ease,
+    border 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
-.champ-box h1,
-.leader-box h1 {
+.hero-card:hover {
+
+  transform: translateY(-4px);
+}
+
+.hero-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(120deg,
+      transparent,
+      rgba(255, 255, 255, 0.03),
+      transparent);
+
+  transform: translateX(-100%);
+  transition: 1s;
+}
+
+.hero-card:hover::before {
+  transform: translateX(100%);
+}
+
+.hero-label {
+  color: #888;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.hero-card h1 {
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.hero-card span {
   color: #ff1e00;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* SECTION */
+
+.section-header {
+  margin-bottom: 24px;
+}
+
+.section-header h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.header-line {
+  width: 120px;
+  height: 3px;
+  background: #ff1e00;
+  border-radius: 20px;
 }
 
 /* GRID */
+
 .teams-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
 }
 
 /* CARD */
-.team-card {
-  padding: 20px;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.05);
 
-  transition: 0.3s;
+.team-card {
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(160deg,
+      rgba(16, 16, 16, 0.98),
+      rgba(6, 6, 6, 0.98));
+
+  border: 1px solid rgba(255, 255, 255, 0.04);
+
+  transition:
+    transform 0.35s ease,
+    border 0.35s ease,
+    box-shadow 0.35s ease;
+
+  cursor: pointer;
 }
 
 .team-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 15px rgba(255, 30, 0, 0.3);
+  transform: translateY(-8px);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.team-card span {
-  color: #ff1e00;
-}
+/* CAR IMAGE */
 
-/* PITWALL */
-.pitwall {
-  margin-top: 15px;
+.car-image-wrapper {
+  position: relative;
+
+  height: 220px;
+
   display: flex;
-  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.02),
+      transparent);
 }
 
-.pit-light {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+.car-image {
+  width: 88%;
+  object-fit: contain;
+
+  transition:
+    transform 0.4s ease;
 }
 
-.green {
-  background: #00ff88;
+.team-card:hover .car-image {
+  transform: scale(1.04);
+  filter: drop-shadow(0 0 18px rgba(255, 30, 0, 0.4));
 }
 
-.yellow {
-  background: #ffd000;
+/* CONTENT */
+
+.team-content {
+  padding: 24px;
 }
 
-.red {
-  background: #ff1e00;
+.team-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.team-top h2 {
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+
+.team-points {
+  color: #ff1e00;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.team-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.team-meta p {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+.team-meta span {
+  color: #ff1e00;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+  .teams-hero {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .teams-page {
+    padding: 20px;
+  }
+
+  .hero-card h1 {
+    font-size: 2rem;
+  }
+
 }
