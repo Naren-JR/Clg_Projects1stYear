@@ -3,9 +3,6 @@ import "../css-pages/Navbar.css";
 
 function Navbar() {
 
-    const user =
-        JSON.parse(localStorage.getItem("user"));
-
     return (
 
         <div className="navbar">
@@ -36,35 +33,9 @@ function Navbar() {
                     Visit
                 </Link>
 
-                {/* ADMIN ONLY */}
-
-                {
-                    user?.role === "admin" && (
-
-                        <Link
-                            className="link"
-                            to="/admin/visits"
-                        >
-                            Reservations
-                        </Link>
-
-                    )
-                }
-
-                {/* LOGIN */}
-
-                {
-                    !user && (
-
-                        <Link
-                            className="link"
-                            to="/login"
-                        >
-                            Login
-                        </Link>
-
-                    )
-                }
+                <Link className="link" to="/login">
+                    Login
+                </Link>
 
             </div>
 

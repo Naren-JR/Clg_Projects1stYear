@@ -7,9 +7,9 @@ import Stats from "./pages/Stats";
 import Races from "./pages/Races";
 import Teams from "./pages/Teams";
 import Login from "./pages/Login";
+import AdminDashboard from "./pages/AdminDashboard";
+import MyVisit from "./pages/MyVisit";
 import Drivers from "./pages/Drivers";
-import AdminVisits from "./pages/AdminVisits";
-import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 import Navbar from "./components/Navbar";
 import NxtRace from "./components/NxtRace";
 
@@ -29,7 +29,9 @@ function App() {
         <Route path="/Visit" element={<Visit />} />
         <Route path="/Teams" element={<Teams />} />
         <Route path="/Login" element={<Login />} />
-        <Route path="/admin/visits" element={<ProtectedAdminRoute> <AdminVisits /> </ProtectedAdminRoute>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/myvisit" element={<MyVisit />} />
       </Routes>
     </>
   );

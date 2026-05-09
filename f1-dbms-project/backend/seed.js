@@ -102,15 +102,15 @@ async function seedCars(conn) {
   const rows = loadCSV("cars.csv");
   for (const r of rows) {
     await conn.query(
-      `INSERT IGNORE INTO CARS (CarID, TeamID, Chassis, PowerUnit, EngineSupplier, Season, CarImage)
-        VALUES (?, ?, ?, ?, ?, ?)`,
+      `INSERT IGNORE INTO CARS (CarID, TeamID, Chassis, Season, PowerUnit, EngineSupplier, CarImage)
+        VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [
         r.CarID,
         r.TeamID,
         r.Chassis,
+        r.Season,
         nullable(r.PowerUnit),
         nullable(r.EngineSupplier),
-        r.Season,
         r.CarImage,
       ],
     );
@@ -199,12 +199,33 @@ async function seedChampionships(conn) {
   console.log(`CHAMPIONSHIPS: ${rows.length} rows`);
 }
 
+async function seedAdmin(conn) {
+  const rows = loadCSV("admin.csv");
+  { console.log(rows) }
+  for (const r of rows) {
+    await conn.query(
+      `INSERT IGNORE INTO USERS (UserID, FormID, Username, Email, UserPassword, Role, CreatedAt)
+        VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [
+        r.UserID,
+        nullable(r.FormID),
+        r.Username,
+        r.Email,
+        r.UserPassword,
+        r.Role,
+        r.CreatedAt
+      ],
+    );
+  }
+  console.log(`DEAFULT ADMIN: ${rows.length} rows`);
+}
+
 async function seed() {
   const conn = await createConnection({
     host: "127.0.0.1",
     user: "root",
     password: "root",
-    database: "f1dbms",
+    database: "f1DBMS",
     port: 3306,
     multipleStatements: true, // needed for schema.sql
   });
@@ -221,6 +242,7 @@ async function seed() {
     await seedRaces(conn);
     await seedResults(conn);
     await seedChampionships(conn);
+    await seedAdmin(conn);
     console.log("\nSeed complete");
   } catch (err) {
     console.error("Seed failed:", err.message);

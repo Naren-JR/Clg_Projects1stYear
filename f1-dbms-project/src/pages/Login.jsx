@@ -1,28 +1,22 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import "../css-pages/Login.css";
 
 function Login() {
 
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState({
-        username: "",
-        password: ""
-    });
+    const [username, setUsername] =
+        useState("");
 
-    const [error, setError] = useState("");
+    const [password, setPassword] =
+        useState("");
 
-    const handleChange = (e) => {
+    const [error, setError] =
+        useState("");
 
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-
-    };
-
-    const handleSubmit = async (e) => {
+    const handleLogin = async (e) => {
 
         e.preventDefault();
 
@@ -34,32 +28,50 @@ function Login() {
                     method: "POST",
 
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type":
+                            "application/json"
                     },
 
-                    body: JSON.stringify(formData)
+                    body: JSON.stringify({
+                        username,
+                        password
+                    })
                 }
             );
 
-            const data = await res.json();
+            const data =
+                await res.json();
 
             if (!res.ok) {
-                setError(data.error || "Login failed");
+
+                setError(
+                    data.error ||
+                    "Login failed"
+                );
+
                 return;
+
             }
 
-            localStorage.setItem(
-                "user",
-                JSON.stringify(data)
-            );
+            // ROLE REDIRECT
 
-            navigate("/");
+            if (data.Role === "admin") {
+
+                navigate("/admin");
+
+            } else {
+
+                navigate("/myvisit");
+
+            }
 
         } catch (err) {
 
             console.error(err);
 
-            setError("Server error");
+            setError(
+                "Server error"
+            );
 
         }
 
@@ -71,32 +83,42 @@ function Login() {
 
             <form
                 className="login-card"
-                onSubmit={handleSubmit}
+                onSubmit={handleLogin}
             >
 
-                <h1>F1DBMS Login</h1>
+                <h1>
+                    Login
+                </h1>
 
                 <input
                     type="text"
-                    name="username"
                     placeholder="Username"
-                    value={formData.username}
-                    onChange={handleChange}
+                    value={username}
+                    onChange={(e) =>
+                        setUsername(
+                            e.target.value
+                        )
+                    }
                 />
 
                 <input
                     type="password"
-                    name="password"
                     placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
+                    value={password}
+                    onChange={(e) =>
+                        setPassword(
+                            e.target.value
+                        )
+                    }
                 />
 
-                {error && (
-                    <p className="login-error">
-                        {error}
-                    </p>
-                )}
+                {
+                    error && (
+                        <p className="login-error">
+                            {error}
+                        </p>
+                    )
+                }
 
                 <button type="submit">
                     Login

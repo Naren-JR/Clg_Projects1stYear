@@ -1,0 +1,179 @@
+.admin-page {
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 40px;
+
+    padding: 40px;
+
+    background:
+        radial-gradient(circle at top left,
+            #1a0000 0%,
+            transparent 30%),
+        radial-gradient(circle at bottom right,
+            #110011 0%,
+            transparent 30%),
+        #060606;
+
+    color: white;
+}
+
+.admin-section {
+
+    padding: 30px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(145deg,
+            rgba(18, 18, 18, 0.96),
+            rgba(6, 6, 6, 0.98));
+
+    border:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.45);
+}
+
+.admin-section h1 {
+
+    margin-bottom: 25px;
+
+    font-size: 2rem;
+}
+
+/* TABLE */
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+thead {
+
+    background:
+        rgba(255, 255, 255, 0.04);
+}
+
+th,
+td {
+
+    padding: 16px;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.05);
+}
+
+th {
+
+    color: #ff1e00;
+
+    font-weight: 600;
+}
+
+td {
+
+    color: #d0d0d0;
+}
+
+tr:hover {
+
+    background:
+        rgba(255, 255, 255, 0.02);
+}
+
+/* BUTTONS */
+
+.admin-section button {
+
+    margin-right: 10px;
+
+    padding: 10px 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #ff1e00;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.admin-section button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 18px rgba(255, 30, 0, 0.3);
+}
+
+/* FORM */
+
+.admin-section input,
+.admin-section textarea {
+
+    width: 100%;
+
+    margin-bottom: 18px;
+
+    padding: 14px 16px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    background:
+        rgba(255, 255, 255, 0.03);
+
+    color: white;
+
+    outline: none;
+
+    font-size: 1rem;
+
+    box-sizing: border-box;
+}
+
+.admin-section textarea {
+
+    min-height: 180px;
+
+    resize: vertical;
+}
+
+.admin-section input:focus,
+.admin-section textarea:focus {
+
+    border-color: #ff1e00;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .admin-page {
+
+        padding: 20px;
+    }
+
+    table {
+
+        display: block;
+
+        overflow-x: auto;
+    }
+
+}

@@ -1,0 +1,150 @@
+.myvisit-page {
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px;
+
+    background:
+        radial-gradient(circle at top left,
+            #1a0000 0%,
+            transparent 30%),
+        radial-gradient(circle at bottom right,
+            #110011 0%,
+            transparent 30%),
+        #060606;
+
+    color: white;
+}
+
+.myvisit-card {
+
+    width: 500px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+
+    padding: 40px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(145deg,
+            rgba(18, 18, 18, 0.96),
+            rgba(6, 6, 6, 0.98));
+
+    border:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.45);
+}
+
+.myvisit-card h1 {
+
+    font-size: 2.2rem;
+
+    margin-bottom: 10px;
+}
+
+.myvisit-card input {
+
+    padding: 14px 16px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    background:
+        rgba(255, 255, 255, 0.03);
+
+    color: white;
+
+    outline: none;
+
+    font-size: 1rem;
+}
+
+.myvisit-card input:focus {
+
+    border-color: #ff1e00;
+}
+
+.myvisit-card button {
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #ff1e00;
+
+    color: white;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.myvisit-card button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 20px rgba(255, 30, 0, 0.35);
+}
+
+.visit-details {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255, 255, 255, 0.03);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.05);
+}
+
+.visit-details h2 {
+
+    color: #ff1e00;
+
+    margin-bottom: 8px;
+}
+
+.visit-details p {
+
+    color: #d0d0d0;
+
+    font-size: 1rem;
+}
+
+.cancel-btn {
+
+    margin-top: 10px;
+
+    background: #8b0000 !important;
+}
+
+.message {
+
+    text-align: center;
+
+    color: #ff7b7b;
+}
