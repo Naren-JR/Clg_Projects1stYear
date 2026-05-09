@@ -1,4 +1,5 @@
 import express from "express";
+
 import cors from "cors";
 
 import db from "./db.js";
@@ -8,28 +9,35 @@ import teamsRoutes from "./routes/teams.js";
 import driversRoutes from "./routes/drivers.js";
 import loginRoutes from "./routes/login.js";
 import visitRoutes from "./routes/visit.js";
+import myvisitRoutes from "./routes/myvisit.js";
+import adminRoutes from "./routes/admin.js";
+import announcementRoutes from "./routes/announcements.js";
+import homeRoutes from "./routes/home.js";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+app.use("/", homeRoutes);
 app.use("/races", racesRoutes);
 app.use("/teams", teamsRoutes);
 app.use("/", driversRoutes);
 
 app.use("/", loginRoutes);
 app.use("/visit", visitRoutes);
+app.use("/myvisit", myvisitRoutes);
+app.use("/admin", adminRoutes);
+app.use("/announcements", announcementRoutes);
 
-app.get("/Teams", async (req, res) => {
+app.get("/test", async (req, res) => {
 
   try {
 
-    const sql =
-      "SELECT * FROM teams";
-
     const [result] =
-      await db.query(sql);
+      await db.query(
+        "SELECT 1 AS test"
+      );
 
     res.json(result);
 

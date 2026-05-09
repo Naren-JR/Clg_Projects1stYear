@@ -2,11 +2,11 @@
 
     display: flex;
     flex-direction: column;
+
     gap: 50px;
 
     padding: 40px;
 }
-
 
 /* ================= NEWS ================= */
 
@@ -20,7 +20,6 @@
 
     align-items: start;
 }
-
 
 /* MAIN HEADLINE */
 
@@ -52,15 +51,16 @@
     transform: scale(1.04);
 }
 
-
 /* OVERLAY */
 
 .news-overlay {
 
     position: absolute;
+
     inset: 0;
 
     display: flex;
+
     align-items: flex-end;
 
     padding: 40px;
@@ -81,7 +81,6 @@
     line-height: 1.1;
 }
 
-
 /* SIDE NEWS */
 
 .news-side {
@@ -99,6 +98,7 @@
     flex: 1;
 
     display: flex;
+
     gap: 16px;
 
     padding: 14px;
@@ -139,12 +139,13 @@
 .news-card p {
 
     display: flex;
+
     align-items: center;
 
     font-size: 1rem;
+
     line-height: 1.4;
 }
-
 
 /* ================= CHAMPION ================= */
 
@@ -160,6 +161,7 @@
     overflow: hidden;
 
     display: flex;
+
     align-items: center;
 
     min-height: 320px;
@@ -186,7 +188,6 @@
         0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
-
 /* SUBTLE DIVIDER */
 
 .champion-card::before {
@@ -209,7 +210,6 @@
             rgba(255, 255, 255, 0.08),
             transparent);
 }
-
 
 /* TEXT */
 
@@ -263,7 +263,6 @@
     font-weight: 600;
 }
 
-
 /* IMAGE */
 
 .champion-img {
@@ -281,7 +280,6 @@
 
     z-index: 3;
 }
-
 
 /* GLOW */
 
@@ -309,6 +307,104 @@
     pointer-events: none;
 }
 
+/* ================= ANNOUNCEMENTS ================= */
+
+.announcements-section {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+}
+
+.announcement-header {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.announcement-header h2 {
+
+    font-size: 2rem;
+}
+
+.announcement-line {
+
+    width: 120px;
+    height: 4px;
+
+    border-radius: 20px;
+
+    background: #ff1e00;
+}
+
+.announcements-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,
+            minmax(280px, 1fr));
+
+    gap: 22px;
+}
+
+.announcement-card {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+
+    padding: 24px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(160deg,
+            rgba(16, 16, 16, 0.96),
+            rgba(8, 8, 8, 0.96));
+
+    border:
+        1px solid rgba(255, 255, 255, 0.05);
+
+    transition:
+        transform 0.3s ease,
+        border 0.3s ease;
+}
+
+.announcement-card:hover {
+
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(255, 30, 0, 0.35);
+}
+
+.announcement-card h3 {
+
+    color: #ff1e00;
+
+    font-size: 1.2rem;
+}
+
+.announcement-card p {
+
+    color: #d0d0d0;
+
+    line-height: 1.6;
+}
+
+.announcement-card span {
+
+    margin-top: auto;
+
+    color: #888;
+
+    font-size: 0.85rem;
+}
 
 /* ================= RESPONSIVE ================= */
 

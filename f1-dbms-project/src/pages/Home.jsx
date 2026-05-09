@@ -1,12 +1,47 @@
+import { useEffect, useState } from "react";
+
 import "../css-pages/home.css";
 
 function Home() {
+
+    const [announcements, setAnnouncements] =
+        useState([]);
+
+    useEffect(() => {
+
+        fetchAnnouncements();
+
+    }, []);
+
+    const fetchAnnouncements =
+        async () => {
+
+            try {
+
+                const res =
+                    await fetch(
+                        "http://localhost:5000/announcements"
+                    );
+
+                const data =
+                    await res.json();
+
+                setAnnouncements(data);
+
+            } catch (err) {
+
+                console.error(err);
+
+            }
+
+        };
 
     return (
 
         <div className="home-container">
 
             {/* HERO NEWS */}
+
             <section className="news-section">
 
                 <div className="news-headline">
@@ -61,11 +96,17 @@ function Home() {
 
                     <div className="champion-left">
 
-                        <h3>2025 Drivers Champion</h3>
+                        <h3>
+                            2025 Drivers Champion
+                        </h3>
 
-                        <h1>Lando Norris</h1>
+                        <h1>
+                            Lando Norris
+                        </h1>
 
-                        <p>423 PTS • McLaren</p>
+                        <p>
+                            423 PTS • McLaren
+                        </p>
 
                     </div>
 
@@ -74,6 +115,57 @@ function Home() {
                         alt="Champion"
                         className="champion-img"
                     />
+
+                </div>
+
+            </section>
+
+            {/* ANNOUNCEMENTS */}
+
+            <section className="announcements-section">
+
+                <div className="announcement-header">
+
+                    <h2>
+                        Team Announcements
+                    </h2>
+
+                    <div className="announcement-line"></div>
+
+                </div>
+
+                <div className="announcements-grid">
+
+                    {
+                        announcements.map(
+                            (a, i) => (
+
+                                <div
+                                    className="announcement-card"
+                                    key={i}
+                                >
+
+                                    <h3>
+                                        {a.Title}
+                                    </h3>
+
+                                    <p>
+                                        {a.Content}
+                                    </p>
+
+                                    <span>
+                                        {
+                                            new Date(
+                                                a.CreatedAt
+                                            ).toLocaleDateString()
+                                        }
+                                    </span>
+
+                                </div>
+
+                            )
+                        )
+                    }
 
                 </div>
 

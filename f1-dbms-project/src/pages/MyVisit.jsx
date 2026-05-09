@@ -121,8 +121,7 @@ function MyVisit() {
                                 }
                             />
 
-                            <button
-                                onClick={fetchVisit}
+                            <button onClick={fetchVisit}
                             >
                                 Fetch Reservation
                             </button>

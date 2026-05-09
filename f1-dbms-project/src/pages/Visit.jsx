@@ -42,9 +42,90 @@ export default function Visit() {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+
         e.preventDefault();
-        console.log(formData);
+
+        try {
+
+            const res = await fetch(
+                "http://localhost:5000/visit",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        fullName:
+                            formData.name,
+
+                        email:
+                            formData.email,
+
+                        phone:
+                            formData.contact,
+
+                        gender:
+                            formData.gender,
+
+                        dob:
+                            formData.dob,
+
+                        team:
+                            formData.team,
+
+                        preferredDate:
+                            formData.date,
+
+                        totalVisitors:
+                            formData.visitors,
+
+                        tourDuration:
+                            formData.duration === "halfday"
+                                ? "Half-Day"
+                                : "Full-Day",
+
+                        specialRequests:
+                            formData.req,
+
+                        departments:
+                            formData.department.map(
+                                d =>
+                                    d.charAt(0).toUpperCase() +
+                                    d.slice(1)
+                            )
+
+                    })
+                }
+            );
+
+            const data =
+                await res.json();
+
+            if (!res.ok) {
+
+                alert(
+                    data.error
+                );
+
+                return;
+
+            }
+
+            alert(
+                `Visit submitted.\nUsername: ${data.username}\nPassword: ${data.password}`
+            );
+
+        } catch (err) {
+
+            console.error(err);
+
+        }
+
     };
 
     return (

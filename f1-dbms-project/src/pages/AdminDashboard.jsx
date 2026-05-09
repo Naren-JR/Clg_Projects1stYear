@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import "../css-pages/AdminDashboard.css";
 
 function AdminDashboard() {
@@ -13,102 +14,127 @@ function AdminDashboard() {
         useState("");
 
     useEffect(() => {
+
         fetchVisits();
+
     }, []);
 
-    const fetchVisits = async () => {
+    const fetchVisits =
+        async () => {
 
-        try {
+            try {
 
-            const res = await fetch(
-                "http://localhost:5000/admin/visits"
-            );
+                const res =
+                    await fetch(
+                        "http://localhost:5000/admin/visits"
+                    );
 
-            const data =
-                await res.json();
+                const data =
+                    await res.json();
 
-            setVisits(data);
+                setVisits(data);
 
-        } catch (err) {
+            } catch (err) {
 
-            console.error(err);
+                console.error(err);
 
-        }
+            }
 
-    };
+        };
 
-    const updateStatus = async (
-        formID,
-        status
-    ) => {
+    const updateStatus =
+        async (
+            formID,
+            status
+        ) => {
 
-        try {
+            try {
 
-            await fetch(
-                `http://localhost:5000/admin/visit/${formID}`,
-                {
-                    method: "PUT",
+                await fetch(
+                    `http://localhost:5000/admin/visit/${formID}`,
+                    {
+                        method: "PUT",
 
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
 
-                    body: JSON.stringify({
-                        status
-                    })
+                        body: JSON.stringify({
+                            status
+                        })
+                    }
+                );
+
+                fetchVisits();
+
+            } catch (err) {
+
+                console.error(err);
+
+            }
+
+        };
+
+    const postAnnouncement =
+        async () => {
+
+            try {
+
+                const res =
+                    await fetch(
+                        "http://localhost:5000/announcements",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                title,
+                                content
+                            })
+                        }
+                    );
+
+                const data =
+                    await res.json();
+
+                console.log(data);
+
+                if (!res.ok) {
+
+                    alert(
+                        data.error
+                    );
+
+                    return;
+
                 }
-            );
 
-            fetchVisits();
+                alert(
+                    "Announcement posted"
+                );
 
-        } catch (err) {
+                setTitle("");
 
-            console.error(err);
+                setContent("");
 
-        }
+            } catch (err) {
 
-    };
+                console.error(err);
 
-    const postAnnouncement = async () => {
+            }
 
-        try {
-
-            await fetch(
-                "http://localhost:5000/admin/announcement",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        title,
-                        content
-                    })
-                }
-            );
-
-            setTitle("");
-            setContent("");
-
-            alert(
-                "Announcement posted"
-            );
-
-        } catch (err) {
-
-            console.error(err);
-
-        }
-
-    };
+        };
 
     return (
 
         <div className="admin-page">
+
+            {/* RESERVATIONS */}
 
             <div className="admin-section">
 
@@ -122,13 +148,33 @@ function AdminDashboard() {
 
                         <tr>
 
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Team</th>
-                            <th>Date</th>
-                            <th>Visitors</th>
-                            <th>Status</th>
-                            <th>Actions</th>
+                            <th>
+                                Name
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Team
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Visitors
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
 
                         </tr>
 
@@ -137,63 +183,71 @@ function AdminDashboard() {
                     <tbody>
 
                         {
-                            visits.map((v, i) => (
+                            visits.map(
+                                (v, i) => (
 
-                                <tr key={i}>
+                                    <tr key={i}>
 
-                                    <td>
-                                        {v.FullName}
-                                    </td>
+                                        <td>
+                                            {v.FullName}
+                                        </td>
 
-                                    <td>
-                                        {v.Email}
-                                    </td>
+                                        <td>
+                                            {v.Email}
+                                        </td>
 
-                                    <td>
-                                        {v.Team}
-                                    </td>
+                                        <td>
+                                            {v.Team}
+                                        </td>
 
-                                    <td>
-                                        {v.PreferredDate}
-                                    </td>
-
-                                    <td>
-                                        {v.TotalVisitors}
-                                    </td>
-
-                                    <td>
-                                        {v.VisitStatus}
-                                    </td>
-
-                                    <td>
-
-                                        <button
-                                            onClick={() =>
-                                                updateStatus(
-                                                    v.FormID,
-                                                    "Approved"
-                                                )
+                                        <td>
+                                            {
+                                                v.PreferredDate
                                             }
-                                        >
-                                            Approve
-                                        </button>
+                                        </td>
 
-                                        <button
-                                            onClick={() =>
-                                                updateStatus(
-                                                    v.FormID,
-                                                    "Cancelled"
-                                                )
+                                        <td>
+                                            {
+                                                v.TotalVisitors
                                             }
-                                        >
-                                            Cancel
-                                        </button>
+                                        </td>
 
-                                    </td>
+                                        <td>
+                                            {
+                                                v.VisitStatus
+                                            }
+                                        </td>
 
-                                </tr>
+                                        <td>
 
-                            ))
+                                            <button
+                                                onClick={() =>
+                                                    updateStatus(
+                                                        v.FormID,
+                                                        "Approved"
+                                                    )
+                                                }
+                                            >
+                                                Approve
+                                            </button>
+
+                                            <button
+                                                onClick={() =>
+                                                    updateStatus(
+                                                        v.FormID,
+                                                        "Cancelled"
+                                                    )
+                                                }
+                                            >
+                                                Cancel
+                                            </button>
+
+                                        </td>
+
+                                    </tr>
+
+                                )
+                            )
                         }
 
                     </tbody>
@@ -212,7 +266,7 @@ function AdminDashboard() {
 
                 <input
                     type="text"
-                    placeholder="Title"
+                    placeholder="Announcement Title"
                     value={title}
                     onChange={(e) =>
                         setTitle(
@@ -222,7 +276,7 @@ function AdminDashboard() {
                 />
 
                 <textarea
-                    placeholder="Content"
+                    placeholder="Announcement Content"
                     value={content}
                     onChange={(e) =>
                         setContent(
@@ -234,7 +288,7 @@ function AdminDashboard() {
                 <button
                     onClick={postAnnouncement}
                 >
-                    Post
+                    Post Announcement
                 </button>
 
             </div>
