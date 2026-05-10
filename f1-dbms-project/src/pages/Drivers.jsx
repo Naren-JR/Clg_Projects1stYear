@@ -141,7 +141,7 @@ function Drivers() {
                                             </span>
 
                                             <h2>
-                                                {driver.Points}
+                                                {driver.CurrentPoints}
                                             </h2>
 
                                         </div>
@@ -203,7 +203,7 @@ function Drivers() {
                                             </span>
 
                                             <h2>
-                                                0
+                                                {driver.Championships}
                                             </h2>
 
                                         </div>

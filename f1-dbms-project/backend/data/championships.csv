@@ -1,4 +1,4 @@
-ChampionID,Season,Cateogry,DriverID,TeamID,Points,Wins
+ChampionID,Season,Category,DriverID,TeamID,Points,Wins
 D2021,2021,Drivers,10,RBR,395,10
 C2021,2021,Constructors,NULL,MER,613,9
 D2022,2022,Drivers,10,RBR,454,15

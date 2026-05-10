@@ -5,69 +5,100 @@ export const getDriversPage = async (req, res) => {
     try {
 
         const [drivers] = await db.query(`
+SELECT
+    d.DriverID,
+    d.Abbrev,
+    d.FirstName,
+    d.LastName,
+    d.Nationality,
+    st.DisplayName AS Team,
+    st.Color,
+    dn.DriverNumber,
+    dn.DriverImage,
 
-            SELECT
+    (
+        SELECT SUM(r1.Points)
+        FROM RESULTS r1
+        INNER JOIN RACES ra1
+            ON r1.RaceID = ra1.RaceID
+        WHERE r1.DriverID = d.DriverID
+          AND ra1.Season = YEAR(NOW())
+    ) AS CurrentPoints,
 
-                d.DriverID,
-                d.Abbrev,
-                d.FirstName,
-                d.LastName,
-                d.Nationality,
+    (
+        SELECT COUNT(*)
+        FROM RESULTS r2
+        INNER JOIN RACES ra2
+            ON r2.RaceID = ra2.RaceID
+        WHERE r2.DriverID = d.DriverID
+          AND ra2.Season = YEAR(NOW())
+          AND r2.Pos = 1
+    ) AS Wins,
 
-                st.DisplayName AS Team,
-                st.Color,
+    (
+        SELECT COUNT(*)
+        FROM RESULTS r3
+        INNER JOIN RACES ra3
+            ON r3.RaceID = ra3.RaceID
+        WHERE r3.DriverID = d.DriverID
+          AND ra3.Season = YEAR(NOW())
+          AND r3.Pos <= 3
+    ) AS Podiums,
 
-                dn.DriverNumber,
-                dn.DriverImage,
+    (
+        SELECT COUNT(*)
+        FROM RESULTS r4
+        WHERE r4.DriverID = d.DriverID
+    ) AS Starts,
 
-                COALESCE(SUM(res.Points), 0) AS Points,
+    (
+        SELECT COUNT(*)
+        FROM CHAMPIONSHIPS ch
+        WHERE ch.DriverID = d.DriverID
+          AND ch.Category = 'Drivers'
+    ) AS Championships,
 
-                COUNT(
-                    CASE
-                        WHEN res.Pos = 1 THEN 1
-                    END
-                ) AS Wins,
+    (
+        SELECT COUNT(*)
+        FROM RESULTS r5
+        WHERE r5.DriverID = d.DriverID
+          AND r5.Pos = 1
+    ) AS CareerWins
 
-                COUNT(
-                    CASE
-                        WHEN res.Pos <= 3 THEN 1
-                    END
-                ) AS Podiums,
+FROM DRIVERS d
 
-                COUNT(res.ResultID) AS Starts
+LEFT JOIN DRIVER_NUMBERS dn
+    ON d.DriverID = dn.DriverID
 
-            FROM DRIVERS d
+LEFT JOIN (
+    SELECT
+        r.DriverID,
+        r.TeamID
+    FROM RESULTS r
+    INNER JOIN RACES ra
+        ON r.RaceID = ra.RaceID
+    WHERE ra.Season = YEAR(NOW())
+    GROUP BY r.DriverID, r.TeamID
+) currTeam
+    ON d.DriverID = currTeam.DriverID
 
-            LEFT JOIN RESULTS res
-                ON d.DriverID = res.DriverID
+LEFT JOIN SEASON_TEAMS st
+    ON currTeam.TeamID = st.TeamID
+   AND st.Season = YEAR(NOW())
 
-            LEFT JOIN RACES ra
-                ON res.RaceID = ra.RaceID
+GROUP BY
+d.DriverID,
+d.Abbrev,
+d.FirstName,
+d.LastName,
+d.Nationality,
+st.DisplayName,
+st.Color,
+dn.DriverNumber,
+dn.DriverImage
 
-            LEFT JOIN SEASON_TEAMS st
-                ON res.TeamID = st.TeamID
-                AND st.Season = ra.Season
-
-            LEFT JOIN DRIVER_NUMBERS dn
-                ON d.DriverID = dn.DriverID
-                AND dn.Season = 2026
-
-            WHERE ra.Season = 2026
-
-            GROUP BY
-                d.DriverID,
-                d.Abbrev,
-                d.FirstName,
-                d.LastName,
-                d.Nationality,
-                st.DisplayName,
-                st.Color,
-                dn.DriverNumber,
-                dn.DriverImage
-
-            ORDER BY Points DESC
-
-        `);
+ORDER BY CurrentPoints DESC
+`);
 
         res.json(drivers);
 

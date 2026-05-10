@@ -49,14 +49,14 @@ CarID,Chassis,TeamID,Season,PowerUnit,EngineSupplier,CarImage
 48,AMR25,AT,2025,RBPTH003,Honda,
 49,VF-25,SAU,2025,066/15,Ferrari,
 50,FW47,HAS,2025,066/15,Ferrari,
-51,W17,MER,2026,M17 E Performance,Mercedes,
-52,RB22,RBR,2026,DM01,Ford,
-53,SF-26,FER,2026,067/6,Ferrari,
-54,MCL 40,MCL,2026,M17 E Performance,Mercedes,
-55,A526,ALP,2026,M17 E Performance,Mercedes,
-56,FW48,WIL,2026,M17 E Performance,Mercedes,
-57,AMR26,AMR,2026,RA626H,Honda,
-58,VCARB03,AT,2026,DM01,Ford,
-59,R26,SAU,2026,AFR 26 Hybrid,Audi,
-60,VF-26,HAS,2026,067/6,Ferrari,
-61,MAC-26,CAD,2026,067/6,Ferrari,
+51,W17,MER,2026,M17 E Performance,Mercedes,"https://media.formula1.com/image/upload/c_lfill,w_512/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000001/common/f1/2026/mercedes/2026mercedescarright.webp"
+52,RB22,RBR,2026,DM01,Ford,"https://media.formula1.com/image/upload/c_lfill,w_512/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000001/common/f1/2026/redbullracing/2026redbullracingcarright.webp"
+53,SF-26,FER,2026,067/6,Ferrari,"https://media.formula1.com/image/upload/c_lfill,w_512/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000001/common/f1/2026/ferrari/2026ferraricarright.webp"
+54,MCL 40,MCL,2026,M17 E Performance,Mercedes,"https://media.formula1.com/image/upload/c_lfill,w_512/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000001/common/f1/2026/mclaren/2026mclarencarright.webp"
+55,A526,ALP,2026,M17 E Performance,Mercedes,"https://media.formula1.com/image/upload/c_lfill,w_512/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000001/common/f1/2026/alpine/2026alpinecarright.webp"
+56,FW48,WIL,2026,M17 E Performance,Mercedes,"https://media.formula1.com/image/upload/c_lfill,w_512/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000001/common/f1/2026/williams/2026williamscarright.webp"
+57,AMR26,AMR,2026,RA626H,Honda,"https://media.formula1.com/image/upload/c_lfill,w_512/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000001/common/f1/2026/astonmartin/2026astonmartincarright.webp"
+58,VCARB03,AT,2026,DM01,Ford,"https://media.formula1.com/image/upload/c_lfill,w_512/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000001/common/f1/2026/racingbulls/2026racingbullscarright.webp"
+59,R26,SAU,2026,AFR 26 Hybrid,Audi,"https://media.formula1.com/image/upload/c_lfill,w_512/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000001/common/f1/2026/audi/2026audicarright.webp"
+60,VF-26,HAS,2026,067/6,Ferrari,"https://media.formula1.com/image/upload/c_lfill,w_512/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000001/common/f1/2026/haasf1team/2026haasf1teamcarright.webp"
+61,MAC-26,CAD,2026,067/6,Ferrari,"https://media.formula1.com/image/upload/c_lfill,w_512/q_auto/d_common:f1:2026:fallback:car:2026fallbackcarright.webp/v1740000001/common/f1/2026/cadillac/2026cadillaccarright.webp"
