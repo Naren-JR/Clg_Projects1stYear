@@ -1,0 +1,194 @@
+
+F1 DBMS – Indexes and Stored Procedures Documentation
+Indexes
+1. Results Driver Index
+
+Purpose: Improves driver statistics queries and joins involving DriverID.
+
+SQL:
+
+CREATE INDEX idx_results_driver
+ON RESULTS(DriverID);
+2. Results Race Index
+
+Purpose: Improves joins between RESULTS and RACES.
+
+SQL:
+
+CREATE INDEX idx_results_race
+ON RESULTS(RaceID);
+3. Races Season Index
+
+Purpose: Improves filtering by season in standings and statistics queries.
+
+SQL:
+
+CREATE INDEX idx_races_season
+ON RACES(Season);
+4. Visit Status Index
+
+Purpose: Improves reservation filtering in admin dashboard.
+
+SQL:
+
+CREATE INDEX idx_visit_status
+ON VISITS(VisitStatus);
+5. Users Username Index
+
+Purpose: Improves login authentication speed.
+
+SQL:
+
+CREATE INDEX idx_users_username
+ON USERS(Username);
+6. Championship Driver Index
+
+Purpose: Improves championship statistics queries.
+
+SQL:
+
+CREATE INDEX idx_championship_driver
+ON CHAMPIONSHIPS(DriverID);
+Stored Procedures
+1. GetDriverStandings
+
+Purpose: Returns season-wise driver standings ordered by total points.
+
+SQL:
+
+DELIMITER //
+
+
+CREATE PROCEDURE GetDriverStandings(
+IN seasonYear YEAR
+)
+
+
+BEGIN
+
+
+SELECT
+    d.FirstName,
+    d.LastName,
+    SUM(r.Points) AS Points
+FROM RESULTS r
+
+
+JOIN DRIVERS d
+ON r.DriverID=d.DriverID
+
+
+JOIN RACES ra
+ON r.RaceID=ra.RaceID
+
+
+WHERE ra.Season=seasonYear
+
+
+GROUP BY d.DriverID
+
+
+ORDER BY Points DESC;
+
+
+END //
+
+
+DELIMITER ;
+
+Usage:
+
+CALL GetDriverStandings(2026);
+2. GetTeamStandings
+
+Purpose: Returns constructor standings for a selected season.
+
+SQL:
+
+DELIMITER //
+
+
+CREATE PROCEDURE GetTeamStandings(
+IN seasonYear YEAR
+)
+
+
+BEGIN
+
+
+SELECT
+    st.DisplayName,
+    SUM(r.Points) AS Points
+FROM RESULTS r
+
+
+JOIN RACES ra
+ON r.RaceID=ra.RaceID
+
+
+JOIN SEASON_TEAMS st
+ON r.TeamID=st.TeamID
+AND st.Season=ra.Season
+
+
+WHERE ra.Season=seasonYear
+
+
+GROUP BY st.TeamID
+
+
+ORDER BY Points DESC;
+
+
+END //
+
+
+DELIMITER ;
+
+Usage:
+
+CALL GetTeamStandings(2026);
+Suggested File Placement
+Schema File
+
+Add indexes and procedures inside:
+
+backend/schema.sql
+
+Place indexes after all CREATE TABLE statements.
+
+Place stored procedures at the end of the schema.
+
+Optional Separate Files
+
+Indexes:
+
+backend/sql/indexes.sql
+
+Procedures:
+
+backend/sql/procedures.sql
+
+Then execute them after schema creation during setup.
+
+Features Covered by the Project
+Relational Database Design
+Primary and Foreign Keys
+Normalization
+Constraints and Validation
+Views
+Stored Procedures
+Indexing
+CSV Seeding
+Authentication System
+Admin Dashboard
+Reservation Management
+Announcements System
+Statistics Queries
+Aggregate Functions
+Subqueries
+GROUP BY and JOIN Operations
+Full Stack Integration
+REST API Development
+Dynamic Frontend Rendering
+Role-Based Access
