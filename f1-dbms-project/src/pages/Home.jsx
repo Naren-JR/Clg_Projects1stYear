@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-
+import change2026 from "../assets/change2026.jpg";
+import v8Engine from "../assets/v8Engine.jpg";
+import miamiUpgrades from "../assets/maimiUpgrades.jpg";
+import macarenaWing from "../assets/RBR_MacarenaWing.jpg";
 import "../css-pages/home.css";
 
 function Home() {
@@ -36,6 +39,21 @@ function Home() {
 
         };
 
+    const sideNews = [
+        {
+            title: "Refinements to 2026 F1 regulations",
+            image: change2026
+        },
+        {
+            title: "The Sound of the Past: Are V8 Engines Returning to Formula 1?",
+            image: v8Engine
+        },
+        {
+            title: "Massive Miami Upgrades",
+            image: miamiUpgrades
+        }
+    ];
+
     return (
 
         <div className="home-container">
@@ -47,14 +65,14 @@ function Home() {
                 <div className="news-headline">
 
                     <img
-                        src="https://images.unsplash.com/photo-1541447271487-09612b3f49f7?q=80&w=2000"
+                        src={macarenaWing}
                         alt="headline"
                     />
 
                     <div className="news-overlay">
 
                         <h2>
-                            Ferrari announces major aero upgrade
+                            Red Bull copies Ferrari's Macarena Wing
                         </h2>
 
                     </div>
@@ -62,27 +80,26 @@ function Home() {
                 </div>
 
                 {/* SIDE NEWS */}
-
                 <div className="news-side">
 
-                    {[
-                        "McLaren leads Constructors",
-                        "FIA releases 2026 regulations",
-                        "Mercedes PU breakthrough"
-                    ].map((text, i) => (
+                    {
+                        sideNews.map((news, i) => (
 
-                        <div className="news-card" key={i}>
+                            <div className="news-card" key={i}>
 
-                            <img
-                                src={`https://picsum.photos/300/300?random=${i}`}
-                                alt="news"
-                            />
+                                <img
+                                    src={news.image}
+                                    alt="news"
+                                />
 
-                            <p>{text}</p>
+                                <p>
+                                    {news.title}
+                                </p>
 
-                        </div>
+                            </div>
 
-                    ))}
+                        ))
+                    }
 
                 </div>
 
