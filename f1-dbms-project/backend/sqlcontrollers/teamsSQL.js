@@ -52,32 +52,34 @@ st.Color,
 c.Chassis,
 c.EngineSupplier,
 c.CarImage,
-COALESCE(
-SUM(
-CASE
-WHEN ra.Season=YEAR(NOW())
-THEN res.Points
-ELSE 0
-END
-),0
-) AS Points
+pts.Points
+
 FROM SEASON_TEAMS st
+
 LEFT JOIN CARS c
 ON st.TeamID=c.TeamID
 AND st.Season=c.Season
-LEFT JOIN RESULTS res
-ON st.TeamID=res.TeamID
-LEFT JOIN RACES ra
+
+LEFT JOIN
+(
+SELECT
+res.TeamID,
+SUM(res.Points) AS Points
+
+FROM RESULTS res
+
+JOIN RACES ra
 ON res.RaceID=ra.RaceID
+
+WHERE ra.Season=YEAR(NOW())
+
+GROUP BY res.TeamID
+) 
+pts ON st.TeamID=pts.TeamID
+
 WHERE st.Season=YEAR(NOW())
-GROUP BY
-st.TeamID,
-st.DisplayName,
-st.Color,
-c.Chassis,
-c.EngineSupplier,
-c.CarImage
-ORDER BY Points DESC
+
+ORDER BY pts.Points DESC
 `);
 
         const [drivers] = await db.query(`
