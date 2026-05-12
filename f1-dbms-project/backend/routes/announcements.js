@@ -2,10 +2,13 @@ import express from "express";
 
 import {
     getAnnouncements,
-    createAnnouncement
-} from "../sqlcontrollers/announcementSQL.js";
+    createAnnouncement,
+    deleteAnnouncement
+}
+    from "../sqlcontrollers/announcementSQL.js";
 
-const router = express.Router();
+const router =
+    express.Router();
 
 router.get(
     "/",
@@ -15,6 +18,11 @@ router.get(
 router.post(
     "/",
     createAnnouncement
+);
+
+router.delete(
+    "/:id",
+    deleteAnnouncement
 );
 
 export default router;

@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState }
+    from "react";
 
 import "../css-pages/AdminDashboard.css";
 
 function AdminDashboard() {
 
     const [visits, setVisits] =
+        useState([]);
+
+    const [announcements, setAnnouncements] =
         useState([]);
 
     const [title, setTitle] =
@@ -16,6 +20,8 @@ function AdminDashboard() {
     useEffect(() => {
 
         fetchVisits();
+
+        fetchAnnouncements();
 
     }, []);
 
@@ -33,6 +39,29 @@ function AdminDashboard() {
                     await res.json();
 
                 setVisits(data);
+
+            } catch (err) {
+
+                console.error(err);
+
+            }
+
+        };
+
+    const fetchAnnouncements =
+        async () => {
+
+            try {
+
+                const res =
+                    await fetch(
+                        "http://localhost:5000/announcements"
+                    );
+
+                const data =
+                    await res.json();
+
+                setAnnouncements(data);
 
             } catch (err) {
 
@@ -122,6 +151,30 @@ function AdminDashboard() {
 
                 setContent("");
 
+                fetchAnnouncements();
+
+            } catch (err) {
+
+                console.error(err);
+
+            }
+
+        };
+
+    const deleteAnnouncement =
+        async (id) => {
+
+            try {
+
+                await fetch(
+                    `http://localhost:5000/announcements/${id}`,
+                    {
+                        method: "DELETE"
+                    }
+                );
+
+                fetchAnnouncements();
+
             } catch (err) {
 
                 console.error(err);
@@ -133,8 +186,6 @@ function AdminDashboard() {
     return (
 
         <div className="admin-page">
-
-            {/* RESERVATIONS */}
 
             <div className="admin-section">
 
@@ -201,21 +252,15 @@ function AdminDashboard() {
                                         </td>
 
                                         <td>
-                                            {
-                                                v.PreferredDate
-                                            }
+                                            {v.PreferredDate}
                                         </td>
 
                                         <td>
-                                            {
-                                                v.TotalVisitors
-                                            }
+                                            {v.TotalVisitors}
                                         </td>
 
                                         <td>
-                                            {
-                                                v.VisitStatus
-                                            }
+                                            {v.VisitStatus}
                                         </td>
 
                                         <td>
@@ -256,8 +301,6 @@ function AdminDashboard() {
 
             </div>
 
-            {/* ANNOUNCEMENTS */}
-
             <div className="admin-section">
 
                 <h1>
@@ -290,6 +333,47 @@ function AdminDashboard() {
                 >
                     Post Announcement
                 </button>
+
+                <div className="announcement-list">
+
+                    {
+                        announcements.map(
+                            (a, i) => (
+
+                                <div
+                                    className="announcement-item"
+                                    key={i}
+                                >
+
+                                    <div>
+
+                                        <h3>
+                                            {a.Title}
+                                        </h3>
+
+                                        <p>
+                                            {a.Content}
+                                        </p>
+
+                                    </div>
+
+                                    <button
+                                        onClick={() =>
+                                            deleteAnnouncement(
+                                                a.AnnouncementID
+                                            )
+                                        }
+                                    >
+                                        Delete
+                                    </button>
+
+                                </div>
+
+                            )
+                        )
+                    }
+
+                </div>
 
             </div>
 
