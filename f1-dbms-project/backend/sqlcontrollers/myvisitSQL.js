@@ -1,110 +1,61 @@
 import db from "../db.js";
 
-export const loginVisit = async (
-    req,
-    res
-) => {
+export const getVisit = async (req, res) => {
+  try {
+    const { formid } = req.params;
 
-    try {
-
-        console.log(req.body);
-
-        const {
-            username,
-            password
-        } = req.body;
-
-        const [users] =
-            await db.query(
-                `
-                SELECT *
-                FROM USERS
-                WHERE Username = ?
-                AND UserPassword = ?
-                `,
-                [username, password]
-            );
-
-        if (users.length === 0) {
-
-            return res.status(401).json({
-                error:
-                    "Invalid credentials"
-            });
-
-        }
-
-        const user =
-            users[0];
-
-        const [visits] =
-            await db.query(
-                `
-                SELECT *
+    const [rows] = await db.query(
+      `
+                SELECT
+                    FormID,
+                    FullName,
+                    Team,
+                    PreferredDate,
+                    TotalVisitors,
+                    VisitStatus
                 FROM VISITS
                 WHERE FormID = ?
                 `,
-                [user.FormID]
-            );
+      [formid],
+    );
 
-        if (visits.length === 0) {
-
-            return res.status(404).json({
-                error:
-                    "No reservation found"
-            });
-
-        }
-
-        res.json(visits[0]);
-
-    } catch (err) {
-
-        console.error(err);
-
-        res.status(500).json({
-            error:
-                err.message
-        });
-
+    if (rows.length === 0) {
+      return res.status(404).json({
+        error: "Reservation not found",
+      });
     }
 
+    res.json(rows[0]);
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({
+      error: err.message,
+    });
+  }
 };
 
-export const cancelVisit = async (
-    req,
-    res
-) => {
+export const cancelVisit = async (req, res) => {
+  try {
+    const { id } = req.params;
 
-    try {
-
-        const {
-            id
-        } = req.params;
-
-        await db.query(
-            `
+    await db.query(
+      `
             UPDATE VISITS
             SET VisitStatus = 'Cancelled'
             WHERE FormID = ?
             `,
-            [id]
-        );
+      [id],
+    );
 
-        res.json({
-            message:
-                "Visit cancelled"
-        });
+    res.json({
+      message: "Visit cancelled",
+    });
+  } catch (err) {
+    console.error(err);
 
-    } catch (err) {
-
-        console.error(err);
-
-        res.status(500).json({
-            error:
-                err.message
-        });
-
-    }
-
+    res.status(500).json({
+      error: err.message,
+    });
+  }
 };

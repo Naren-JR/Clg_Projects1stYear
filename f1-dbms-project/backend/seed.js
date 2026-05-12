@@ -201,7 +201,9 @@ async function seedChampionships(conn) {
 
 async function seedAdmin(conn) {
   const rows = loadCSV("admin.csv");
-  { console.log(rows) }
+  {
+    console.log(rows);
+  }
   for (const r of rows) {
     await conn.query(
       `INSERT IGNORE INTO USERS (UserID, FormID, Username, Email, UserPassword, Role, CreatedAt)
@@ -213,7 +215,7 @@ async function seedAdmin(conn) {
         r.Email,
         r.UserPassword,
         r.Role,
-        r.CreatedAt
+        r.CreatedAt,
       ],
     );
   }
@@ -224,7 +226,7 @@ async function seed() {
   const conn = await createConnection({
     host: "127.0.0.1",
     user: "root",
-    password: "root",
+    password: "Balaji",
     database: "f1DBMS",
     port: 3306,
     multipleStatements: true, // needed for schema.sql

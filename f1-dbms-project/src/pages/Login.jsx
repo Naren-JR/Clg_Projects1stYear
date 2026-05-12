@@ -4,132 +4,79 @@ import { useNavigate } from "react-router-dom";
 import "../css-pages/Login.css";
 
 function Login() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [username, setUsername] = useState("");
 
-    const [username, setUsername] =
-        useState("");
+  const [password, setPassword] = useState("");
 
-    const [password, setPassword] =
-        useState("");
+  const [error, setError] = useState("");
 
-    const [error, setError] =
-        useState("");
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-    const handleLogin = async (e) => {
+    try {
+      const res = await fetch("http://localhost:5000/login", {
+        method: "POST",
 
-        e.preventDefault();
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-        try {
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
 
-            const res = await fetch(
-                "http://localhost:5000/login",
-                {
-                    method: "POST",
+      const data = await res.json();
 
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
+      if (!res.ok) {
+        setError(data.error || "Login failed");
 
-                    body: JSON.stringify({
-                        username,
-                        password
-                    })
-                }
-            );
+        return;
+      }
 
-            const data =
-                await res.json();
+      // ROLE REDIRECT
+      localStorage.setItem("user", JSON.stringify(data));
 
-            if (!res.ok) {
+      if (data.Role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/myvisit");
+      }
+    } catch (err) {
+      console.error(err);
 
-                setError(
-                    data.error ||
-                    "Login failed"
-                );
+      setError("Server error");
+    }
+  };
 
-                return;
+  return (
+    <div className="login-page">
+      <form className="login-card" onSubmit={handleLogin}>
+        <h1>Login</h1>
 
-            }
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-            // ROLE REDIRECT
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-            if (data.Role === "admin") {
+        {error && <p className="login-error">{error}</p>}
 
-                navigate("/admin");
-
-            } else {
-
-                navigate("/myvisit");
-
-            }
-
-        } catch (err) {
-
-            console.error(err);
-
-            setError(
-                "Server error"
-            );
-
-        }
-
-    };
-
-    return (
-
-        <div className="login-page">
-
-            <form
-                className="login-card"
-                onSubmit={handleLogin}
-            >
-
-                <h1>
-                    Login
-                </h1>
-
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) =>
-                        setUsername(
-                            e.target.value
-                        )
-                    }
-                />
-
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) =>
-                        setPassword(
-                            e.target.value
-                        )
-                    }
-                />
-
-                {
-                    error && (
-                        <p className="login-error">
-                            {error}
-                        </p>
-                    )
-                }
-
-                <button type="submit">
-                    Login
-                </button>
-
-            </form>
-
-        </div>
-
-    );
-
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
 }
 
 export default Login;

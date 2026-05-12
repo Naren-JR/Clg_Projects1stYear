@@ -1,150 +1,336 @@
 .myvisit-page {
+  min-height: 100vh;
 
-    min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding: 40px;
 
-    padding: 40px;
+  background:
+    radial-gradient(circle at top left, #1a0000 0%, transparent 30%),
+    radial-gradient(circle at bottom right, #110011 0%, transparent 30%),
+    #060606;
 
-    background:
-        radial-gradient(circle at top left,
-            #1a0000 0%,
-            transparent 30%),
-        radial-gradient(circle at bottom right,
-            #110011 0%,
-            transparent 30%),
-        #060606;
-
-    color: white;
+  color: white;
 }
 
 .myvisit-card {
+  width: 500px;
 
-    width: 500px;
+  display: flex;
+  flex-direction: column;
 
-    display: flex;
-    flex-direction: column;
+  gap: 20px;
 
-    gap: 20px;
+  padding: 40px;
 
-    padding: 40px;
+  border-radius: 28px;
 
-    border-radius: 28px;
+  background: linear-gradient(
+    145deg,
+    rgba(18, 18, 18, 0.96),
+    rgba(6, 6, 6, 0.98)
+  );
 
-    background:
-        linear-gradient(145deg,
-            rgba(18, 18, 18, 0.96),
-            rgba(6, 6, 6, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.05);
 
-    border:
-        1px solid rgba(255, 255, 255, 0.05);
-
-    box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
 }
 
 .myvisit-card h1 {
+  font-size: 2.2rem;
 
-    font-size: 2.2rem;
-
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .myvisit-card input {
+  padding: 14px 16px;
 
-    padding: 14px 16px;
+  border-radius: 12px;
 
-    border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 
-    border:
-        1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
 
-    background:
-        rgba(255, 255, 255, 0.03);
+  color: white;
 
-    color: white;
+  outline: none;
 
-    outline: none;
-
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .myvisit-card input:focus {
-
-    border-color: #ff1e00;
+  border-color: #ff1e00;
 }
 
 .myvisit-card button {
+  padding: 14px;
 
-    padding: 14px;
+  border: none;
 
-    border: none;
+  border-radius: 12px;
 
-    border-radius: 12px;
+  background: #ff1e00;
 
-    background: #ff1e00;
+  color: white;
 
-    color: white;
+  font-size: 1rem;
 
-    font-size: 1rem;
+  cursor: pointer;
 
-    cursor: pointer;
-
-    transition: 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .myvisit-card button:hover {
+  transform: translateY(-2px);
 
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 0 20px rgba(255, 30, 0, 0.35);
+  box-shadow: 0 0 20px rgba(255, 30, 0, 0.35);
 }
 
 .visit-details {
+  display: flex;
+  flex-direction: column;
 
-    display: flex;
-    flex-direction: column;
+  gap: 12px;
 
-    gap: 12px;
+  padding: 20px;
 
-    padding: 20px;
+  border-radius: 18px;
 
-    border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
 
-    background:
-        rgba(255, 255, 255, 0.03);
-
-    border:
-        1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .visit-details h2 {
+  color: #ff1e00;
 
-    color: #ff1e00;
-
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .visit-details p {
+  color: #d0d0d0;
 
-    color: #d0d0d0;
-
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .cancel-btn {
+  margin-top: 10px;
 
-    margin-top: 10px;
-
-    background: #8b0000 !important;
+  background: #8b0000 !important;
 }
 
 .message {
+  text-align: center;
 
-    text-align: center;
+  color: #ff7b7b;
+}
 
-    color: #ff7b7b;
+.myvisit-card {
+  width: 1100px;
+
+  min-height: 620px;
+
+  justify-content: space-between;
+}
+
+.visit-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  padding-bottom: 24px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.portal-label {
+  color: #ff1e00;
+
+  font-size: 0.85rem;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 12px;
+}
+
+.welcome-text {
+  color: #9e9e9e;
+
+  margin-top: 8px;
+
+  font-size: 1rem;
+}
+
+.status-pill {
+  padding: 10px 18px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 30, 0, 0.12);
+
+  border: 1px solid rgba(255, 30, 0, 0.3);
+
+  color: #ff5035;
+
+  font-size: 0.9rem;
+
+  font-weight: 600;
+
+  letter-spacing: 1px;
+}
+
+.visit-content {
+  display: flex;
+
+  gap: 28px;
+
+  margin-top: 10px;
+
+  flex: 1;
+}
+
+.visit-main {
+  flex: 2;
+
+  display: flex;
+}
+
+.visit-sidebar {
+  width: 280px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.sidebar-card {
+  padding: 22px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-card h3 {
+  margin-bottom: 14px;
+
+  font-size: 1.1rem;
+}
+
+.sidebar-card p {
+  color: #888;
+
+  margin-bottom: 6px;
+
+  font-size: 0.9rem;
+}
+
+.sidebar-card strong {
+  color: white;
+
+  font-size: 1rem;
+}
+
+.no-visit {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 18px;
+
+  padding: 40px;
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.no-visit p {
+  color: #9e9e9e;
+
+  line-height: 1.7;
+}
+
+.visit-details {
+  width: 100%;
+
+  padding: 30px;
+
+  border-radius: 24px;
+}
+
+.detail-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 18px 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detail-row span {
+  color: #9a9a9a;
+}
+
+.detail-row strong {
+  color: white;
+
+  font-size: 1rem;
+}
+
+.status-active {
+  color: #4cff88;
+}
+
+.visit-actions {
+  display: flex;
+
+  gap: 16px;
+
+  margin-top: 30px;
+}
+
+.edit-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.logout-btn {
+  margin-top: auto;
+}
+
+.message {
+  margin-top: 10px;
+}
+
+@media (max-width: 1100px) {
+  .myvisit-card {
+    width: 100%;
+  }
+
+  .visit-content {
+    flex-direction: column;
+  }
+
+  .visit-sidebar {
+    width: 100%;
+  }
 }
