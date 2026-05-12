@@ -8,7 +8,7 @@ function Navbar() {
         <div className="navbar">
 
             <div className="brand">
-                F1DBMS
+                F1 Central & DB
             </div>
 
             <div className="links">

@@ -72,7 +72,7 @@ function Home() {
                     <div className="news-overlay">
 
                         <h2>
-                            Red Bull copies Ferrari's Macarena Wing
+                            Red Bull builts a better Macarena Wing then Ferrari??
                         </h2>
 
                     </div>

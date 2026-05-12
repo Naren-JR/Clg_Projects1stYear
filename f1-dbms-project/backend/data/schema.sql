@@ -185,3 +185,21 @@ FROM VISITS;
 CREATE VIEW FULL_VISIT_DETAILS AS
 SELECT *
 FROM VISITS;
+
+CREATE INDEX idx_results_driver
+ON RESULTS(DriverID);
+
+CREATE INDEX idx_results_race
+ON RESULTS(RaceID);
+
+CREATE INDEX idx_races_season
+ON RACES(Season);
+
+CREATE INDEX idx_visit_status
+ON VISITS(VisitStatus);
+
+CREATE INDEX idx_users_username
+ON USERS(Username);
+
+CREATE INDEX idx_championship_driver
+ON CHAMPIONSHIPS(DriverID);
