@@ -31,9 +31,8 @@ Admin-side Data Handling
 ## Tech Stack
 
 ### Frontend
-- HTML5
+- React.js
 - CSS3
-- JavaScript
 
 ### Backend
 - Node.js
