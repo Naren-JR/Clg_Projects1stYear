@@ -88,10 +88,101 @@ f1-dbms-project/
 ├── package-lock.json
 ├── package.json
 └── vite.config.js
+```
+## Key Functionalities
 
+### Driver & Team Management
+Store, manage, and retrieve Formula 1 driver and team information.
 
+### Race Management
+Maintain race schedules, race details, and circuit information.
 
+### Championship Standings
+Display standings dynamically based on race results.
 
+### Visitor Registration
+Visitors can submit registration forms through the frontend interface and data gets stored directly into the database.
+
+### CSV Data Seeding
+Large datasets were inserted efficiently using automated CSV seeding scripts instead of manual SQL insertion.
+
+---
+
+## API Integration
+
+REST-style API endpoints were implemented for frontend-backend communication.
+
+Example functionalities:
+- Fetch Teams
+- Fetch Drivers
+- Fetch Standings
+- Submit Visitor Registrations
+
+---
+
+## Installation & Setup
+
+### Clone the Repository
+```bash
+git clone https://github.com/Naren-JR/Clg_Projects1stYear.git
+```
+
+### Navigate to Project Directory
+```bash
+cd Clg_Projects1stYear/f1-dbms-project
+```
+
+### Install Dependencies
+```bash
+npm install
+```
+
+### Configure Database
+
+1. Create a MySQL database  
+2. Import SQL files into MySQL  
+3. Update database credentials in backend configuration files  
+
+### Start the Development Server
+```bash
+npm run dev
+```
+
+### Start Backend Server
+```bash
+node server.js
+```
+
+---
+## Learning Outcomes
+
+- Relational Database Design
+- MySQL Query Handling
+- API Development using Express.js
+- Frontend and Backend Integration
+- CSV-based Bulk Data Management
+- GitHub Collaboration Workflow
+
+---
+## Future Enhancements
+
+- Authentication System
+- Admin Dashboard
+- Live Race Updates
+- Driver Comparison System
+- Advanced Statistics and Analytics
+- Search and Filter Features
+
+---
+## Contributors
+
+- Praful 
+- Naren 
+---
+
+## Repository
+GitHub Repository:  
+https://github.com/Naren-JR/Clg_Projects1stYear/tree/main/f1-dbms-project
 
 
 
