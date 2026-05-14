@@ -12,5 +12,12 @@ This repository contains multiple web development and coding practice projects c
 - Projects include web pages, CSS/JS exercises, and other programming practice files.
 - You are free to explore, learn from, or fork this repository under the terms of the license.
 
+
+
+## Contributors
+
+Praful - praful.math06@gmail.com
+Naren - jamjoornaren@gmail.com
+
 > ⚠️ **Note:** All images, content, and code are for **educational purposes only**. No content is intended for monetary or commercial use.
 
